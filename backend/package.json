@@ -1,0 +1,23 @@
+{
+  "name": "clevertransit",
+  "version": "1.0.0",
+  "description": "Web application where users could share their experience after using public transportation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roberteftene/CleverTransit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roberteftene/CleverTransit/issues"
+  },
+  "homepage": "https://github.com/roberteftene/CleverTransit#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
