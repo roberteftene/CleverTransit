@@ -5,7 +5,9 @@ Our product aims to deliver an easier way to review public transportation. The m
 
 ### User interfaces
 
-![main-page](https://github.com/roberteftene/CleverTransit/blob/main/frontend/Documentation_Images/CleverTransit-1.jpg)
+![main-page-1](https://github.com/roberteftene/CleverTransit/blob/main/frontend/Documentation_Images/CleverTransit-1.jpg)
+![main-page-2](https://github.com/roberteftene/CleverTransit/blob/main/frontend/Documentation_Images/CleverTransit-2.jpg)
+![main-page-3](https://github.com/roberteftene/CleverTransit/blob/main/frontend/Documentation_Images/CleverTransit-3.jpg)
 
 ### API REST
 
@@ -21,6 +23,8 @@ DELETE - /reviews/:id (deleting a review)
 PUT - /reviews/:id (editing a review)
 
 ### Database Mockup
+
+![database-mockup](https://github.com/roberteftene/CleverTransit/blob/main/frontend/Documentation_Images/CleverTransit-4.jpg)
 
 ### Team Roles
 PRODUCT OWNER: Crisan Monica Diana
