@@ -11,26 +11,26 @@ Our product aims to deliver an easier way to review public transportation. The m
 
 ### API REST
 
-POST - /signup (user register)
-POST - /login (user login)
-GET - /news (getting the statistics/news in home page)
-GET - /transport-methods (all transportation methods: bus, train, subway)
-GET - /transport-methods/:id/transport-lines (all LINES for a specific transportation method: bus, tram etc.)
-GET - /transport-lines/:id/reviews (all reviews for a specific transportation line)
-GET - /users/:id/reviews (all of a user’s reviews)
-POST - /reviews (adding a new review)
-DELETE - /reviews/:id (deleting a review)
-PUT - /reviews/:id (editing a review)
+POST - /signup (user register) <br />
+POST - /login (user login) <br />
+GET - /news (getting the statistics/news in home page) <br />
+GET - /transport-methods (all transportation methods: bus, train, subway) <br />
+GET - /transport-methods/:id/transport-lines (all LINES for a specific transportation method: bus, tram etc.) <br />
+GET - /transport-lines/:id/reviews (all reviews for a specific transportation line) <br />
+GET - /users/:id/reviews (all of a user’s reviews) <br />
+POST - /reviews (adding a new review) <br />
+DELETE - /reviews/:id (deleting a review) <br />
+PUT - /reviews/:id (editing a review) <br />
 
 ### Database Mockup
 
 ![database-mockup](https://github.com/roberteftene/CleverTransit/blob/main/frontend/Documentation_Images/CleverTransit-4.jpg)
 
 ### Team Roles
-PRODUCT OWNER: Crisan Monica Diana
-PROCESS COORDINATOR: Eftene Robert Petrut
-FULL-STACK DEVELOPERS: Avram Nicolae Mihai, Ciuc Ciprian Ionut, Crisan Monica Diana, Eftene Robert Petrut
-TESTERS: Avram Nicolae Mihai, Ciuc Ciprian Ionut, Crisan Monica Diana, Eftene Robert Petrut
+PRODUCT OWNER: Crisan Monica Diana <br />
+PROCESS COORDINATOR: Eftene Robert Petrut <br />
+FULL-STACK DEVELOPERS: Avram Nicolae Mihai, Ciuc Ciprian Ionut, Crisan Monica Diana, Eftene Robert Petrut <br />
+TESTERS: Avram Nicolae Mihai, Ciuc Ciprian Ionut, Crisan Monica Diana, Eftene Robert Petrut 
 
 
 ### Start the app  
