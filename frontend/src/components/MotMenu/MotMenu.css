@@ -1,0 +1,24 @@
+.fas {
+    color: #ff914a;
+    margin-right: 10px;
+}
+
+.mot-item {
+    color: rgb(70, 70, 70);
+    text-transform: uppercase;
+    font-size: 24px;
+    letter-spacing: 2px;
+    transition: all .2s ease-in-out;
+    font-weight: 500;
+}
+
+.mot-item:hover {
+    transform: scale(1.2);
+}
+
+.mot-item:focus {
+    color: #ff914a;
+}
+
+
+
