@@ -13,6 +13,7 @@ export default class ReviewsPage extends React.Component {
 
             <div className="container">
                 <h1>Reviews Page / MOT</h1>
+                <p>Hello</p>
                 <MotMenu/>
 
             </div>
