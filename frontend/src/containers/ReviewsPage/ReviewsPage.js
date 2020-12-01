@@ -1,6 +1,10 @@
 import React from 'react'
 import "./ReviewsPage.css"
 import MotMenu from "../../components/MotMenu/MotMenu"
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
 
 export default class ReviewsPage extends React.Component {
     constructor(props) {
@@ -11,13 +15,19 @@ export default class ReviewsPage extends React.Component {
     render() {
         return <>
 
-            <div className="container">
-                <h1>Reviews Page / MOT</h1>
-                <p>Hello</p>
-                <MotMenu/>
-
-            </div>
-
+            <Row>
+                <Col sm={2}>
+                <MotMenu  className="mot-menu"></MotMenu>
+                </Col>
+                
+                <Col sm={10}>
+                <Card>
+                <Card.Body>This is some text within a card body.</Card.Body>
+                </Card>
+                </Col>
+               
+            
+            </Row>
         </>
     }
 }
