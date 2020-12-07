@@ -7,14 +7,14 @@ const createMethodOfTransport = async (req,res) => {
 }
 
 const getAllMethods = async(req,res) => {
-    let methods;
     try {
         await MethodOfTransport.findAll()
-        .then((allMethods) => methods = allMethods );
+        .then((allMethods) => {
+            res.status(200).json(allMethods)
+        });
     } catch (err) {
         return res.status(404).send({message: "No data found"});
     }
-    res.send(methods);
 }
 
 module.exports = {

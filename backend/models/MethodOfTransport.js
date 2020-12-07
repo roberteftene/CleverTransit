@@ -1,7 +1,9 @@
+const { sequelize } = require(".");
+
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('transport_method', {
-        'name':DataTypes.STRING
+        'name': DataTypes.STRING
     }, {
-        underscored:true
+        underscored: true,
     });
 }
