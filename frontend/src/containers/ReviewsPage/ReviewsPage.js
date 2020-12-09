@@ -1,7 +1,7 @@
 import React from 'react'
+import axios from 'axios';
 import "./ReviewsPage.css"
 import MotMenu from "../../components/MotMenu/MotMenu"
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
@@ -9,15 +9,26 @@ import Card from 'react-bootstrap/Card'
 export default class ReviewsPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            methodsOfTransport: []
+         }
     }
+
+    componentDidMount() {
+        axios.get('http://localhost:3000/methods')
+        .then(result => {
+          const methodsOfTransport = result.data;
+          console.log(result.data);
+          this.setState({ methodsOfTransport })
+        })
+      }
 
     render() {
         return <>
 
             <Row>
                 <Col sm={2}>
-                <MotMenu  className="mot-menu"></MotMenu>
+                <MotMenu  className="mot-menu" methods={this.state.methodsOfTransport}></MotMenu>
                 </Col>
                 
                 <Col sm={10}>
