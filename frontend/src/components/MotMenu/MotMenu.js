@@ -16,7 +16,7 @@ export default class MotMenu extends React.Component {
             <Nav.Item>
               { this.props.methods.map(method => 
               <Nav.Link eventKey={`link-${method.id}`} key={method.id} className="mot-item">
-                <i className="fas fa-tram"></i>{method.name}
+                <i className={`fas fa-${method.name.toString().toLowerCase()}`}></i>{method.name}
               </Nav.Link>
               )}
             </Nav.Item>

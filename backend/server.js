@@ -4,6 +4,7 @@ const app = express()
 const model = require('./models');
 const PORT = require('./config/config.json').port;
 const routes = require('./routes')
+const cors = require('cors')
 
 model.sequelize.authenticate().then(() => {
     console.log("Connected to database")
@@ -13,7 +14,7 @@ model.sequelize.authenticate().then(() => {
 })
 
 model.sequelize.sync();
-
+app.use(cors());
 app.use('/', routes);
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
