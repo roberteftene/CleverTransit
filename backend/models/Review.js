@@ -26,6 +26,12 @@ module.exports = (sequelize, DataTypes) => {
         'satisfaction_level': {
             type:DataTypes.INTEGER,
             allowNull: false
+        },
+        'transportLineId': {
+            type: DataTypes.INTEGER
+        },
+        'userId': {
+            type:DataTypes.INTEGER
         }
     }, {
         underscored: true,
