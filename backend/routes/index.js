@@ -1,4 +1,6 @@
-const router = require("express").Router();
+// const router = require("express").Router();
+const express = require('express')
+const router = express()
 const methodOfTransportController = require('../controllers/MethodOfTransportController');
 const transportLineController = require('../controllers/TransportLineController');
 const reviewController = require('../controllers/ReviewController')
