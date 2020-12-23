@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        'leaving_hout': {
+        'leaving_hour': {
             type: DataTypes.STRING,
             allowNull: false
         },
