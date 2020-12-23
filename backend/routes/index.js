@@ -13,6 +13,7 @@ router.get('/transport-method/:id/lines',transportLineController.getTransportLin
 
 router.get('/reviews', reviewController.getAllReviews);
 router.get('/reviews/:id',reviewController.getReviewById)
+router.get('/lines/:id/reviews',reviewController.getReviewsByLineId)
 router.delete('/reviews/:id', reviewController.deleteReview);
 router.post('/reviews',reviewController.addReview);
 router.put('/reviews/:id',reviewController.editReview);

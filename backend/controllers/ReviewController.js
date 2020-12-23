@@ -1,4 +1,5 @@
 const Review = require('../models').Review
+const TransportLine = require('../models').TransportLine
 
 const getAllReviews = async(req,res) => {
     try {
@@ -82,11 +83,29 @@ const getReviewById = async(req,res) => {
     }
 }
 
+const getReviewsByLineId = async(req,res) => {
+    let lineId;
+    try {
+        let tranportLine = await TransportLine.findOne( {
+            where: {id: req.params.id}
+        })
+        lineId = tranportLine.id
+
+        let result = await Review.findAll( {
+            where: {transportLineId: lineId}
+        })
+        res.status(200).json(result)
+    } catch(err) {
+        res.status(500).send('Server error')
+    }
+}
+
 
 module.exports = {
     getAllReviews,
     deleteReview,
     addReview,
     editReview,
-    getReviewById
+    getReviewById,
+    getReviewsByLineId
 }

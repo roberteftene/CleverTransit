@@ -11,7 +11,7 @@ describe('Test restful api methods for review model', () => {
     test('Test get all reviews', async done => {
         const result = await request(app).get('/reviews')
         expect(result.status).toBe(200)
-        expect(result.body.length).toBe(5)
+        expect(result.body.length).toBe(9)
         done();
 
     })
@@ -56,6 +56,12 @@ describe('Test restful api methods for review model', () => {
             "transportLineId": 4,
             "userId": 1 
         })
+        expect(200)
+        done()
+    })
+
+    test('Test get reviews by transport line id', async done => {
+        await request(app).get('/lines/4/reviews')
         expect(200)
         done()
     })
