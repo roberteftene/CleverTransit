@@ -25,8 +25,26 @@ const deleteReview = async(req,res) => {
     }
 }
 
+const addReview = async(req,res) => {
+    try {
+         let review = await Review.create({
+            start_point : req.body.start_point,
+            end_point : req.body.end_point,
+            leaving_hour : req.body.leaving_hour,
+            duration : req.body.duration,
+            congestion_level : req.body.congestion_level,
+            observations : req.body.observations,
+            satisfaction_level: req.body.satisfaction_level
+        })
+        res.status(200).send(review)
+    } catch(err) {
+        return res.status(500).send('Server error')
+    }
+}
+
 
 module.exports = {
     getAllReviews,
-    deleteReview
+    deleteReview,
+    addReview
 }

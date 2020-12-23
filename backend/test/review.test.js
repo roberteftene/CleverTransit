@@ -11,7 +11,7 @@ describe('Test restful api methods for review model', () => {
     test('Test get all reviews', async done => {
         const result = await request(app).get('/reviews')
         expect(result.status).toBe(200)
-        expect(result.body.length).toBe(4)
+        expect(result.body.length).toBe(5)
         done();
 
     })
@@ -22,6 +22,24 @@ describe('Test restful api methods for review model', () => {
         await request(app).delete('/reviews/1')
         expect(result.body.length).toBe(resultBeforeDelete--)
         done();
+    })
+
+    test('Test add new review feature', async done => {
+        let reviews = await request(app).get('/reviews')
+        let reviewNo = reviews.body.length
+        await request(app).post('/reviews').send({
+            "start_point":"Piata Iancului",
+            "end_point":"Piata Obor",
+            "leaving_hour":"20:40",
+            "duration":30,
+            "congestion_level":4,
+            "observations":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            "satisfaction_level":5
+        })
+        let reviewsAfterAdd = await request(app).get('/reviews')
+        expect(reviewsAfterAdd.body.length).toBe(reviewNo++)
+        done();
+        
     })
 
 })

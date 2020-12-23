@@ -10,5 +10,6 @@ router.get('/methods',methodOfTransportController.getAllMethods);
 router.get('/lines',transportLineController.getTransportLines);
 router.get('/reviews', reviewController.getAllReviews);
 router.delete('/reviews/:id', reviewController.deleteReview);
+router.post('/reviews',reviewController.addReview);
 router.get('/transport-method/:id/lines',transportLineController.getTransportLineByTransportMethodId);
 module.exports = router;
