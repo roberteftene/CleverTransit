@@ -7,9 +7,13 @@ const reviewController = require('../controllers/ReviewController')
 
 
 router.get('/methods',methodOfTransportController.getAllMethods);
+
 router.get('/lines',transportLineController.getTransportLines);
+router.get('/transport-method/:id/lines',transportLineController.getTransportLineByTransportMethodId);
+
 router.get('/reviews', reviewController.getAllReviews);
+router.get('/reviews/:id',reviewController.getReviewById)
 router.delete('/reviews/:id', reviewController.deleteReview);
 router.post('/reviews',reviewController.addReview);
-router.get('/transport-method/:id/lines',transportLineController.getTransportLineByTransportMethodId);
+router.put('/reviews/:id',reviewController.editReview);
 module.exports = router;

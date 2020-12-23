@@ -34,12 +34,30 @@ describe('Test restful api methods for review model', () => {
             "duration":30,
             "congestion_level":4,
             "observations":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-            "satisfaction_level":5
+            "satisfaction_level":5,
+            "transportLineId": 4,
+            "userId": 1
         })
         let reviewsAfterAdd = await request(app).get('/reviews')
         expect(reviewsAfterAdd.body.length).toBe(reviewNo++)
         done();
         
+    })
+
+    test('Test edit review feature', async done => {
+        await request(app).put('/reviews/11').send({
+            "start_point":"Piata Amnzei",
+            "end_point":"Piata Obor",
+            "leaving_hour":"20:40",
+            "duration":30,
+            "congestion_level":4,
+            "observations":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            "satisfaction_level":5,
+            "transportLineId": 4,
+            "userId": 1 
+        })
+        expect(200)
+        done()
     })
 
 })
