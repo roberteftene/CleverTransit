@@ -18,9 +18,9 @@ const reviewMock = [
 //     await model.TransportLine.bulkCreate(lineData);
 // })();
 
-(async () =>  {
-    await model.Review.bulkCreate(reviewMock);
-})();
+// (async () =>  {
+//     await model.Review.bulkCreate(reviewMock);
+// })();
 
 
 //This is for deleting tables
@@ -29,8 +29,8 @@ const reviewMock = [
 // })()
 
 //This is for deleting data
-// (async () => {
-//     await model.TransportLine.destroy({where: {
-//         id:[12,13,14,15,16,17,18,19,20,21,22]
-//     }});
-// })()
+(async () => {
+    await model.transportMethod.destroy({where: {
+        id:[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+    }});
+})()

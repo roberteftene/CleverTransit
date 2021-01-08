@@ -15,7 +15,7 @@ export default class ReviewsPage extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/methods')
+        axios.get('http://smotocode.app.webtech-superheroes.net:8080/methods')
         .then(result => {
           const methodsOfTransport = result.data;
           console.log(result.data);
