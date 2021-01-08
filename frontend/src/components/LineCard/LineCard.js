@@ -16,7 +16,7 @@ export default class LineCard extends React.Component {
                 
             {this.props.linesByMot.map(line => 
 
-                <Card className="linecard">
+                <Card key = {line.id} className="linecard">
                     <Card.Header className="card-header">{line.lineName} Line</Card.Header>
                     <Card.Body>
                         <Card.Title>{line.route}</Card.Title>
