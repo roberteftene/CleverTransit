@@ -15,11 +15,17 @@ export default class ReviewsPage extends React.Component {
         }
     }
 
+    componentDidMount() {
+        axios.get(`http://smotocode.app.webtech-superheroes.net:8080/transport-method/1/lines`)
+                .then(result => {
+                    const linesByMot = result.data;
+                    this.setState({ lines: linesByMot })
+                })
+    }
+
     componentDidUpdate(prevProps,prevState) {
         
         if (this.state.methodOfTransportId !== prevState.methodOfTransportId) {
-
-            console.log("MOT id",this.state.methodOfTransportId);
 
             axios.get(`http://smotocode.app.webtech-superheroes.net:8080/transport-method/${this.state.methodOfTransportId}/lines`)
                 .then(result => {
