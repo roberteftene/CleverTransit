@@ -10,6 +10,8 @@ router.get('/methods',methodOfTransportController.getAllMethods);
 
 router.get('/lines',transportLineController.getTransportLines);
 router.get('/transport-method/:id/lines',transportLineController.getTransportLineByTransportMethodId);
+router.post('/lines',transportLineController.addTransportLine);
+router.put('/lines/:id',transportLineController.editTransportLine);
 
 router.get('/reviews', reviewController.getAllReviews);
 router.get('/reviews/:id',reviewController.getReviewById)

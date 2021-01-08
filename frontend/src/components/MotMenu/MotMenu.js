@@ -5,34 +5,45 @@ import axios from "axios";
 
 
 export default class MotMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { methodsOfTransport:[] };
-  }
-  componentDidMount() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            methodsOfTransport: []
+        };
+    }
+    componentDidMount() {
         axios.get('http://smotocode.app.webtech-superheroes.net:8080/methods')
-        .then(result => {
-          const methodsOfTransport = result.data;
-          console.log(result.data);
-          this.setState({ methodsOfTransport })
-        })
+            .then(result => {
+                const methodsOfTransport = result.data;
+                this.setState({ methodsOfTransport })
+            })
     }
 
-  render() {
-    return (
-      <>
-        <div className="container">
-          <Nav  defaultActiveKey="/home" className="flex-column mot-menu">
-            <Nav.Item>
-              { this.state.methodsOfTransport.map(method => 
-              <Nav.Link eventKey={`link-${method.id}`} key={method.id} className="mot-item">
-                <i className={`fas fa-${method.name.toString().toLowerCase()}`}></i>{method.name}
-              </Nav.Link>
-              )}
-            </Nav.Item>
-          </Nav>
-        </div>
-      </>
-    );
-  }
+    onMotSelected(methodId) {
+        this.props.onMotSelected(methodId);
+    }
+
+    render() {
+        return (
+            <>
+                <div className="container" >
+                    <Nav defaultActiveKey="/home" className="flex-column mot-menu">
+                        <Nav.Item>
+                            {this.state.methodsOfTransport.map(method =>
+                                <Nav.Link
+                                    eventKey={`link-${method.id}`}
+                                    key={method.id}
+                                    className="mot-item"
+                                    onClick={() => this.onMotSelected(method.id)}                                    >
+
+                                    <i className={`fas fa-${method.name.toString().toLowerCase()}`}></i>{method.name}
+
+                                </Nav.Link>
+                            )}
+                        </Nav.Item>
+                    </Nav>
+                </div>
+            </>
+        );
+    }
 }
