@@ -1,0 +1,22 @@
+.card-header {
+    background-color: #ff914a !important;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.lineCard-btn {
+    margin: 10px;
+    color: #fff !important;
+    padding: 10px;
+    transition: all .2s ease-in-out !important;
+}
+
+.lineCard-btn:hover{
+    transform: scale(1.2);
+}
+
+.card-text {
+    font-weight: 500;
+}
