@@ -1,6 +1,7 @@
 import React from 'react'
 import "./ReviewsPage.css"
 import MotMenu from "../../components/MotMenu/MotMenu"
+import Linecard from "../../components/LineCard/LineCard"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
@@ -21,9 +22,7 @@ export default class ReviewsPage extends React.Component {
                 </Col>
                 
                 <Col sm={10}>
-                <Card>
-                <Card.Body>This is some text within a card body.</Card.Body>
-                </Card>
+                <Linecard className="line-card"></Linecard>
                 </Col>
                
             
