@@ -47,7 +47,7 @@ export default class ReviewsPage extends React.Component {
         return <>
 
             <Row>
-                <Col sm={2}>
+                <Col className="mot-menu-col" sm={2}>
                     <MotMenu className="mot-menu" onMotSelected={this.handleMotSelection}></MotMenu>
                 </Col>
 
