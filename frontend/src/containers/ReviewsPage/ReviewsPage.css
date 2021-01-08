@@ -4,12 +4,31 @@
     padding: 0;
 }
 
+.mot-menu {
+    padding:20px;
+    position: fixed;
+}
+
+.mot-menu-col {
+    background-color: #ff914a;
+}
+
+.nav {
+    margin-left: 40px;
+}
+
 .lineList {
     color: red;
 }
 
 .line-card{
     margin: 10px !important;
+}
+
+@media only screen and (max-width: 750px) {
+    .mot-menu {
+        position: relative;
+    }
 }
 
 
