@@ -1,12 +1,22 @@
 import React from "react";
 import "./MotMenu.css";
 import Nav from "react-bootstrap/Nav";
+import axios from "axios";
+
 
 export default class MotMenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { methodsOfTransport:[] };
   }
+  componentDidMount() {
+        axios.get('http://smotocode.app.webtech-superheroes.net:8080/methods')
+        .then(result => {
+          const methodsOfTransport = result.data;
+          console.log(result.data);
+          this.setState({ methodsOfTransport })
+        })
+    }
 
   render() {
     return (
@@ -14,7 +24,7 @@ export default class MotMenu extends React.Component {
         <div className="container">
           <Nav  defaultActiveKey="/home" className="flex-column mot-menu">
             <Nav.Item>
-              { this.props.methods.map(method => 
+              { this.state.methodsOfTransport.map(method => 
               <Nav.Link eventKey={`link-${method.id}`} key={method.id} className="mot-item">
                 <i className={`fas fa-${method.name.toString().toLowerCase()}`}></i>{method.name}
               </Nav.Link>
