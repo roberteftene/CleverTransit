@@ -1,6 +1,6 @@
-import react from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ReviewsPage from './containers/ReviewsPage/ReviewsPage'
+import ProfilePage from './containers/ProfilePage/ProfilePage';
 
 export default function Routes() {
     return (
@@ -10,6 +10,7 @@ export default function Routes() {
                 For more details visit: https://reactrouter.com/web/guides/quick-start
             */}
             <Route path="/reviews" exact component={ReviewsPage}></Route>
+            <Route path="/profile" exact component={ProfilePage}></Route>
 
         </Router>
 
