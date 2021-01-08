@@ -1,3 +1,11 @@
+.container {
+    margin:20px
+}
+
+.card {
+    margin-top: 50px;
+}
+
 .card-header {
     background-color: #ff914a !important;
     color: #fff;

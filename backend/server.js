@@ -16,7 +16,7 @@ model.sequelize.authenticate().then(() => {
 })
 
 model.sequelize.sync();
-//If we have modification for the tables
+// If we have modification for the tables
 // model.sequelize.sync({alter: true});
 app.use(cors());
 app.use('/', routes);
