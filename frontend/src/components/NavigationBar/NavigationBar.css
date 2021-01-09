@@ -1,0 +1,21 @@
+.navbar { 
+    background-color: #ff914a; 
+    height: auto;
+}
+
+a, .navbar-nav, .navbar-light .nav-link {
+    color: black;
+    &:hover { color: white; }
+}
+
+.navbar-brand {
+    font-size: 1.4em;
+    color: black;
+    &:hover { color: white; }
+}
+
+.form-center {
+    position: absolute !important;
+    left: 30%;
+    right: 30%;
+}
