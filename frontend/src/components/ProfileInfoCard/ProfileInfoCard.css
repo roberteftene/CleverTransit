@@ -1,0 +1,13 @@
+.card {
+    padding: 20px;
+}
+
+.card-title {
+    color: #ff914a;
+    text-transform: uppercase;
+}
+
+.infoCard-container {
+    width: 20%;
+    margin-left:50px;
+}

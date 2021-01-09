@@ -1,7 +1,6 @@
 import React from "react"
 import Card from 'react-bootstrap/Card'
-import imgWRob from '../../assets/images/DSC_1993.png'
-
+import './ProfileInfoCard.css'
 
 export default class ProfileInfoCard extends React.Component {
 
@@ -15,7 +14,10 @@ export default class ProfileInfoCard extends React.Component {
             <div className="infoCard-container">
 
                 <Card>
-                    <Card.Img variant="top" src={imgWRob}></Card.Img>
+                    <Card.Title>Your info</Card.Title>
+                    <Card.Text>Name: Robert Eftene</Card.Text>
+                    <Card.Text>Mail: roberteftene25@gmail.com</Card.Text>
+                    <Card.Text>Password: blabla</Card.Text>
                 </Card>
 
             </div>
