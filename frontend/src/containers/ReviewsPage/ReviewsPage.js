@@ -16,7 +16,7 @@ export default class ReviewsPage extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://smotocode.app.webtech-superheroes.net:8080/transport-method/1/lines`)
+        axios.get(`http://localhost:3000/transport-method/${this.state.methodOfTransportId}/lines`)
                 .then(result => {
                     const linesByMot = result.data;
                     this.setState({ lines: linesByMot })
@@ -27,7 +27,7 @@ export default class ReviewsPage extends React.Component {
         
         if (this.state.methodOfTransportId !== prevState.methodOfTransportId) {
 
-            axios.get(`http://smotocode.app.webtech-superheroes.net:8080/transport-method/${this.state.methodOfTransportId}/lines`)
+            axios.get(`http://localhost:3000/transport-method/${this.state.methodOfTransportId}/lines`)
                 .then(result => {
                     const linesByMot = result.data;
                     this.setState({ lines: linesByMot })

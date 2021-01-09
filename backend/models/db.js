@@ -6,7 +6,7 @@ const sequelize = new Sequelize(
     config.db_user , 
     config.db_pass,
     {
-    host: 'db',
+    host: 'localhost',
     dialect: 'mysql'
     }
 );

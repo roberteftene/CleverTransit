@@ -12,7 +12,7 @@ export default class MotMenu extends React.Component {
         };
     }
     componentDidMount() {
-        axios.get('http://smotocode.app.webtech-superheroes.net:8080/methods')
+        axios.get('http://localhost:3000/methods')
             .then(result => {
                 const methodsOfTransport = result.data;
                 this.setState({ methodsOfTransport })
