@@ -28,3 +28,9 @@
 .card-text {
     font-weight: 500;
 }
+
+.modal-title {
+    color: #ff914a;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
