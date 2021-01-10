@@ -5,13 +5,24 @@ import "./LineCard.css"
 import Modal from 'react-bootstrap/Modal' 
 import Form from 'react-bootstrap/Form'
 import FormGroup from 'react-bootstrap/esm/FormGroup'
-
+import axios from "axios";
 export default class LineCard extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
             showModal:false,
-            lineOpened:0
+            lineOpened:0,
+            formData: {
+                start_point:"",
+                end_point:"",
+                leaving_hour:"",
+                duration:"",
+                congestion_level:0,
+                observations:"",
+                satisfaction_level:0,
+                transportLineId:0,
+                userId:0
+            }
         }
     }
 
@@ -19,6 +30,35 @@ export default class LineCard extends React.Component {
     this.setState({showModal:false});
     
     handleShow = (lineId) => this.setState({showModal:true,lineOpened:lineId});
+
+    handleAddReview = () => {
+        axios.post("http://localhost:3000/reviews",{
+            "start_point":this.state.formData.start_point,
+            "end_point": this.state.formData.end_point,
+            "leaving_hour":this.state.formData.leaving_hour,
+            "duration":this.state.formData.duration,
+            "congestion_level":this.state.formData.congestion_level,
+            "observations":this.state.formData.observations,
+            "satisfaction_level":this.state.formData.satisfaction_level,
+            "transportLineId":this.state.lineOpened,
+            "userId":1
+        }, {headers:{"Content-Type" : "application/json"}})
+        .then((res)=> {console.log(res)})
+            .catch((err) => {console.log(err)})
+
+        this.setState({showModal:false, formData: {
+            start_point:"",
+            end_point:"",
+            leaving_hour:"",
+            duration:"",
+            congestion_level:0,
+            observations:"",
+            satisfaction_level:0,
+            transportLineId:0,
+            userId:0
+        }});
+    
+    }
 
     render() {
         return(
@@ -43,29 +83,29 @@ export default class LineCard extends React.Component {
                     <FormGroup controlId="routePoints">
                         <Form.Label>Start Point</Form.Label>
                         <Form.Text>E.G Started the trip for Aurel Vlaicu subway station. Therefore, enter "Aurel Vlaicu"</Form.Text>
-                        <Form.Control type="text" placeholder="Enter starting point"></Form.Control>
+                        <Form.Control onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,start_point: e.target.value}}))}  type="text" placeholder="Enter starting point"></Form.Control>
                         <br/>
                         <Form.Label>End Point</Form.Label>
                         <Form.Text>E.G Ended the trip at Piata Unirii subway station. Therefore, enter "Piata Unirii"</Form.Text>
-                        <Form.Control type="text" placeholder="Enter ending point"></Form.Control>
+                        <Form.Control  onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,end_point: e.target.value}}))} type="text" placeholder="Enter ending point"></Form.Control>
                     </FormGroup>
 
                     <FormGroup controlId="leavingHour">
                         <Form.Label>Leaving hour</Form.Label>
                         <Form.Text>E.G The subway left Aurel Vlaicu station at 14:15. Therefore, enter 14:15</Form.Text>
-                        <Form.Control type="time" placeholder="Enter leaving hour"></Form.Control>
+                        <Form.Control  onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,leaving_hour: e.target.value}}))} type="time" placeholder="Enter leaving hour"></Form.Control>
                     </FormGroup>
 
                     <FormGroup controlId="duration">
                         <Form.Label>Duration</Form.Label>
                         <Form.Text>E.G The trip from Aurel Vlaicu to Piata Unirii took 35 minutes. Therefore, enter 35</Form.Text>
-                        <Form.Control type="number" placeholder="Enter duration"></Form.Control>
+                        <Form.Control  onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,duration: e.target.value}}))} type="number" placeholder="Enter duration"></Form.Control>
                     </FormGroup>
 
                     <FormGroup controlId="congestionLevel">
                         <Form.Label>Congestion Level</Form.Label>
                         <Form.Text>1 - Free | 2 - Ok | 3 - Moderate | 4 - Full | 5 - Exagerate</Form.Text>
-                        <Form.Control as="select">
+                        <Form.Control  onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,congestion_level: e.target.value}}))} as="select">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -77,7 +117,7 @@ export default class LineCard extends React.Component {
                     <FormGroup controlId="satisfactionLevel">
                     <Form.Label>Satisfaction Level</Form.Label>
                         <Form.Text>1 - Very low | 2 - Low  | 3 - Moderate | 4 - Good | 5 - Very good</Form.Text>
-                        <Form.Control as="select">
+                        <Form.Control onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,satisfaction_level: e.target.value}}))}  as="select">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -89,7 +129,7 @@ export default class LineCard extends React.Component {
                     <FormGroup controlId="observation">
                         <Form.Label>Observations</Form.Label>
                         <Form.Text> Enter below any observations regarding your trip</Form.Text>
-                        <Form.Control as="textarea" rows={3}/>
+                        <Form.Control onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,observations: e.target.value}}))}  as="textarea" rows={3}/>
                     </FormGroup>
                 </Form>
 
@@ -97,7 +137,7 @@ export default class LineCard extends React.Component {
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={() => this.handleClose()}>Close</Button>
-                <Button variant="primary" onClick={() => this.handleClose}>Add review</Button>
+                <Button variant="primary" onClick={() => this.handleAddReview()}>Add review</Button>
                 </Modal.Footer>
 
             </Modal>
