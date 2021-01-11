@@ -9,17 +9,17 @@ import './HomePage.css'
 const students = [
     {
         id: 1,
-        img: './Students_Images/1.JPG',
-        name: 'Diana Crisan',
-        github: 'https://github.com/dianacrisan',
-        description: "Ambious IT Student Smoto's Assistant"
-    },
-    {
-        id: 2,
-        img: '/Students_Images/2.JPG',
+        img: '/Students_Images/1.JPG',
         name: 'Robert Eftene',
         github: 'https://github.com/robertEftene',
         description: "Ambious IT Student and Web Developer"
+    },
+    {
+        id: 2,
+        img: './Students_Images/2.JPG',
+        name: 'Diana Crisan',
+        github: 'https://github.com/dianacrisan',
+        description: "Ambious IT Student and Smoto's Assistant"
     },
     {
         id: 3,
