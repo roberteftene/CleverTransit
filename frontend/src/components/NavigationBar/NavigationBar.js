@@ -20,6 +20,7 @@ export default class NavigationBar extends React.Component {
                     <Nav className="mr-auto">
                         <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
                         <Nav.Item><Nav.Link href="/reviews">Methods of Transport</Nav.Link></Nav.Item>
+                        <Nav.Item><Nav.Link href="/aboutus">About Us</Nav.Link></Nav.Item>
                         <Nav.Item><Nav.Link href="/profile">Profile</Nav.Link></Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
