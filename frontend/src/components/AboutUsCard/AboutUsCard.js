@@ -1,38 +1,38 @@
 import React from "react"
 import {Button, Card } from 'react-bootstrap'
 import './AboutUsCard.css'
-
-import Robert from './Robert.JPG'
-import Diana from './Diana.JPEG'
-
 export default class AboutUsCard extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            id: this.props.key,
+            name: this.props.name,
+            github: this.props.github,
+            description: this.props.description,
+            img: this.props.img
+        }
     }
 
-    btnClickRobert() {
-        window.open("https://github.com/roberteftene");
-    }
-
-    btnClickDiana() {
-        window.open("https://github.com/dianacrisan");
+    btnOpenGithub() {
+        window.open(this.state.github);
     }
 
     render() {
+        const {id, img, name, description } = this.state;
         return (
             <div className="about-us-card-container">
 
                 <Card style={{ width: '18rem' }}>
-                {/* <Card.Img variant="top" src="holder.js/100px180" />  */}
-                <Card.Img variant="top" src={Diana} /> 
+                <Card.Img variant="top" src={img} /> 
                 <Card.Body>
-                    <Card.Title>Diana Crisan</Card.Title>
+                    <Card.Title>{name}</Card.Title>
                     <Card.Text>
-                        Ambitious IT Student
+                        {description}
                     </Card.Text>
-                    <Button  onClick={this.btnClickDiana.bind(this)}>GitHub Profile</Button>
+                    <Button  onClick={() => this.btnOpenGithub()}>
+                            GitHub Profile
+                    </Button>
                 </Card.Body>
                 </Card>
 
