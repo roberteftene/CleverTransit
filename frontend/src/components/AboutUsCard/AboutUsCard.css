@@ -1,0 +1,17 @@
+.card {
+    padding: 20px;
+}
+
+.card-title {
+    color: #ff914a;
+    text-transform: uppercase;
+}
+
+.button {
+    background-color: #ff914a;
+    color: white;
+}
+
+.about-us-card-container {
+    width: auto;
+}
