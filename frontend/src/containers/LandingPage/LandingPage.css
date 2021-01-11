@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0;
+    color: #fff;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.landingPage-container {
+    color: #fff;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url(../../Resources/Images/city.jpg);
+    height: 100vh;
+    /*vh - > view height (all window height for the background img)*/
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-textbox {
+    position: absolute;
+    width: 1140px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Buttons */
+
+.btn {
+    margin-right: 10px;
+}
+
+.btn:link,
+.btn:visited {
+    display: inline-block;
+    padding: 10px 30px 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
+    transition: all 0.2s;
+}
+
+.btn-full:link,
+.btn-full:visited {
+    background-color: #f39c12;
+    color: #fff;
+    border: 1px solid #f39c12;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    color: #f39c12;
+    border: 1px solid;
+    border-color: #f39c12;
+}
+
+.btn:active,
+.btn:hover {
+    background-color: #cf6d17;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    color: #000;
+    border: 1px solid #cf6d17;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    color: #000;
+    border: 1px solid;
+    border-color: #cf6d17;
+}
