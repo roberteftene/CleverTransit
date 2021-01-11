@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ReviewsPage from './containers/ReviewsPage/ReviewsPage'
 import ProfilePage from './containers/ProfilePage/ProfilePage';
+import HomePage from './containers/HomePage/HomePage';
 
 export default function Routes() {
     return (
@@ -11,6 +12,7 @@ export default function Routes() {
             */}
             <Route path="/reviews" exact component={ReviewsPage}></Route>
             <Route path="/profile" exact component={ProfilePage}></Route>
+            <Route path="/" exact component={HomePage}></Route>
 
         </Router>
 
