@@ -12,8 +12,8 @@ export default function Routes() {
             */}
             <Route path="/reviews" exact component={ReviewsPage}></Route>
             <Route path="/profile" exact component={ProfilePage}></Route>
-            <Route path="/" exact component={HomePage}></Route>
-            <Route path="/landing" exact component={LandingPage}></Route>
+            <Route path="/home" exact component={HomePage}></Route>
+            <Route path="/" exact component={LandingPage}></Route>
         </Router>
     );
 }

@@ -8,6 +8,14 @@ export default class LandingPage extends React.Component {
         this.state = {};
     }
 
+    componentDidMount() {
+        document.querySelector('.navbar').style.display = 'none';
+    }
+
+    componentWillUnmount() {
+        document.querySelector('.navbar').style.display = 'flex';
+    }
+
     render() {
         return (
             <header className="landingPage-container">
@@ -16,10 +24,10 @@ export default class LandingPage extends React.Component {
                         Find out what people said. <br />
                         Share your experience.
                     </h1>
-                    <a class="btn btn-full" href="#">
+                    <a className="btn btn-full" href="#">
                         Log In
                     </a>
-                    <a class="btn btn-ghost" href="/home">
+                    <a className="btn btn-ghost" href="/home">
                         Guest
                     </a>
                 </div>

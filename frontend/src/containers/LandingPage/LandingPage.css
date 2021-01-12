@@ -85,3 +85,8 @@ h1 {
     border: 1px solid;
     border-color: #cf6d17;
 }
+
+/* not ok ! */
+/* .navbar.navbar-expand-lg.navbar-light {
+    display: none;
+} */
