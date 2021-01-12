@@ -94,7 +94,7 @@ export default class LineCard extends React.Component {
     }
 
     onShowLessClicked() {
-        this.setState({reviews:[],showBtnLess:false});
+        this.setState({reviews:[],showBtnLess:false,lineOpened:0});
     }
 
     render() {
