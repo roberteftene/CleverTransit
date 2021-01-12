@@ -23,9 +23,9 @@ export default class ReviewCard extends React.Component {
             return (  
             <Card>
                 <Card.Body>
-                <Card.Title>FOARTEE AGLOMERATTT!!</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{review.start_point} + {review.end_point}</Card.Subtitle>
-                <Card.Text>{smileyFaces}</Card.Text>
+                <Card.Title>{review.review_title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{review.start_point} - {review.end_point}</Card.Subtitle>
+                <Card.Text>{smileyFaces}  Likes: {review.review_noLikes}</Card.Text>
                 <Card.Text>Leaving Hour: {review.leaving_hour} Duration: {review.duration} min</Card.Text>
                 <Card.Text className="cardText-noMarginBottom">Congestion Level</Card.Text>
                 <ProgressBar now="60" label="60"></ProgressBar>

@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('review', {
+        'review_title': {
+            type:DataTypes.STRING,
+            allowNull:false
+        },
         'start_point': {
             type: DataTypes.STRING,
             allowNull: false
@@ -26,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
         'satisfaction_level': {
             type:DataTypes.INTEGER,
             allowNull: false
+        },
+        'review_noLikes': {
+            type:DataTypes.INTEGER
         },
         'transportLineId': {
             type: DataTypes.INTEGER
