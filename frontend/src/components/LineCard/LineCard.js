@@ -14,6 +14,7 @@ export default class LineCard extends React.Component {
             showModal:false,
             lineOpened:0,
             formData: {
+                review_title:"",
                 start_point:"",
                 end_point:"",
                 leaving_hour:"",
@@ -21,6 +22,7 @@ export default class LineCard extends React.Component {
                 congestion_level:0,
                 observations:"",
                 satisfaction_level:0,
+                review_noLikes: 0,
                 transportLineId:0,
                 userId:0
             },
@@ -40,6 +42,7 @@ export default class LineCard extends React.Component {
 
     handleAddReview = () => {
         axios.post("http://localhost:3000/reviews",{
+            "review_title":this.state.formData.review_title,
             "start_point":this.state.formData.start_point,
             "end_point": this.state.formData.end_point,
             "leaving_hour":this.state.formData.leaving_hour,
@@ -47,6 +50,7 @@ export default class LineCard extends React.Component {
             "congestion_level":this.state.formData.congestion_level,
             "observations":this.state.formData.observations,
             "satisfaction_level":this.state.formData.satisfaction_level,
+            "review_noLikes":this.state.formData.review_noLikes,
             "transportLineId":this.state.lineOpened,
             "userId":1
         }, {headers:{"Content-Type" : "application/json"}})
@@ -54,6 +58,7 @@ export default class LineCard extends React.Component {
             .catch((err) => {console.log(err)})
 
         this.setState({showModal:false, formData: {
+            review_title:"",
             start_point:"",
             end_point:"",
             leaving_hour:"",
@@ -61,6 +66,7 @@ export default class LineCard extends React.Component {
             congestion_level:0,
             observations:"",
             satisfaction_level:0,
+            review_noLikes:0,
             transportLineId:0,
             userId:0
         }});
@@ -109,7 +115,7 @@ export default class LineCard extends React.Component {
                     <FormGroup controlId="reviewTitle">
                         <Form.Label>Enter a title for your review</Form.Label>
                         <Form.Text>E.G "Traffic jam with bus 125"</Form.Text>
-                        <Form.Control type="text" placeholder="Enter title"></Form.Control>
+                        <Form.Control  onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,review_title: e.target.value}}))} type="text" placeholder="Enter title"></Form.Control>
                     </FormGroup>
                     <FormGroup controlId="routePoints">
                         <Form.Label>Start Point</Form.Label>
