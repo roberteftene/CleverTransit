@@ -1,15 +1,27 @@
-.navbar { 
-    background-color: #ff914a; 
+.navbar {
+    background-color: #ff914a;
     height: auto;
 }
 
-a, .navbar-nav, .navbar-light .nav-link {
-    color: black;
+.navbar-nav,
+.navbar-light .nav-link {
+    color: #000 !important;
+    transition: all 0.3s;
+}
+
+.navbar-nav,
+.navbar-light .nav-link:hover {
+    color: #fff !important;
 }
 
 .navbar-brand {
     font-size: 1.4em;
     color: black;
+    transition: all 0.3s;
+}
+
+.navbar-brand:hover {
+    color: #fff !important;
 }
 
 .form-center {

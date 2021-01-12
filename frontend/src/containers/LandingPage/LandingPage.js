@@ -10,10 +10,12 @@ export default class LandingPage extends React.Component {
 
     componentDidMount() {
         document.querySelector('.navbar').style.display = 'none';
+        document.querySelector('.footer').style.display = 'none';
     }
 
     componentWillUnmount() {
         document.querySelector('.navbar').style.display = 'flex';
+        document.querySelector('.footer').style.display = 'flex';
     }
 
     render() {
