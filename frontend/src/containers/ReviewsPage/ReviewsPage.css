@@ -27,4 +27,16 @@
     }
 }
 
+.card.hiddenReviews {
+    display: none !important; 
+}
+
+.linecard.card {
+    background-color:#464442;
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-text.line-description {
+    color:#fff;
+}
 

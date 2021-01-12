@@ -116,6 +116,17 @@ const getReviewsByLineId = async (req, res) => {
     }
 }
 
+const getPopularReviewsByLikes = async (req,res) => {
+    try {
+        let reviews = await Review.findAll();
+        reviews.sort((a, b) => (a.review_noLikes < b.review_noLikes) ? 1 : -1)
+        const reviewFiltered = reviews.filter(elem => elem.review_noLikes !== null && elem.review_noLikes > 0)
+        res.status(200).send(reviewFiltered);
+    } catch(err) {
+        res.status(500).send('Server error')
+    }
+}
+
 
 module.exports = {
     getAllReviews,
@@ -123,5 +134,6 @@ module.exports = {
     addReview,
     editReview,
     getReviewById,
-    getReviewsByLineId
+    getReviewsByLineId,
+    getPopularReviewsByLikes
 }

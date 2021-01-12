@@ -187,7 +187,7 @@ export default class LineCard extends React.Component {
                     <Card.Header className="card-header">{line.lineName} Line</Card.Header>
                     <Card.Body>
                         <Card.Title>{line.route}</Card.Title>
-                        <Card.Text className="card-text">
+                        <Card.Text className="card-text line-description">
                             {line.lineDescription}
                         </Card.Text>
                         <Button variant="primary" className="lineCard-btn" onClick={() => this.handleShow(line.id)}>Add review</Button>
