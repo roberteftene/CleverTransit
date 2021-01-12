@@ -11,19 +11,20 @@ export default class ReviewCard extends React.Component {
 
     render() {
         
-        let smileyFaces = [];
-        for(let i = 0; i <=5 ; i++) {
-            smileyFaces.push(<i className="faces fas fa-smile"></i>);
-        }
+       
 
         return <>
         
-        {this.props.reviews.map(review => 
-
+        {this.props.reviews.map(review => {
+            let smileyFaces = [];
+            for(let i = 0; i <review.congestion_level ; i++) {
+            smileyFaces.push(<i className="faces fas fa-smile"></i>);
+            }
+            return (  
             <Card>
                 <Card.Body>
                 <Card.Title>FOARTEE AGLOMERATTT!!</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{review.starting_point} + {review.ending_point}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{review.start_point} + {review.end_point}</Card.Subtitle>
                 <Card.Text>{smileyFaces}</Card.Text>
                 <Card.Text>Leaving Hour: {review.leaving_hour} Duration: {review.duration} min</Card.Text>
                 <Card.Text className="cardText-noMarginBottom">Congestion Level</Card.Text>
@@ -31,6 +32,8 @@ export default class ReviewCard extends React.Component {
                 <Card.Text>{review.observations}</Card.Text>
                 </Card.Body>
             </Card>
+            )
+        } 
         )}
         </>
     }
