@@ -19,4 +19,6 @@ router.get('/lines/:id/reviews',reviewController.getReviewsByLineId)
 router.delete('/reviews/:id', reviewController.deleteReview);
 router.post('/reviews',reviewController.addReview);
 router.put('/reviews/:id',reviewController.editReview);
+router.get('/popular-reviews',reviewController.getPopularReviewsByLikes);
+
 module.exports = router;

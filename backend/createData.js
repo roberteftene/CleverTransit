@@ -128,9 +128,9 @@ const lineData = [
 // })();
 
 // This is for inserting data
-(async () => {
-    await model.TransportLine.bulkCreate(lineData);
-})();
+// (async () => {
+//     await model.TransportLine.bulkCreate(lineData);
+// })();
 
 // (async () => {
 //     await model.TransportLine.bulkCreate(lineData);
