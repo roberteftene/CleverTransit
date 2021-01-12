@@ -19,7 +19,7 @@ export default class AboutUsCard extends React.Component {
     }
 
     render() {
-        const {id, img, name, description } = this.state;
+        const {img, name, description } = this.state;
         return (
             <div className="about-us-card-container">
 

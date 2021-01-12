@@ -5,13 +5,11 @@
 
 a, .navbar-nav, .navbar-light .nav-link {
     color: black;
-    &:hover { color: white; }
 }
 
 .navbar-brand {
     font-size: 1.4em;
     color: black;
-    &:hover { color: white; }
 }
 
 .form-center {

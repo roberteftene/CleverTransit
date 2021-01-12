@@ -42,21 +42,25 @@ export default class AboutUsPage extends React.Component {
 
     render() {
         return (
-            <section className="aboutUsPage-container">
-            {students.map(student => {
-                // return <Book key={book.id} book={book}></Book>;
-                // return <Book key={book.id} {...book}></Book>; //spread operator
-                return (
-                    <AboutUsCard className="aboutus-card" 
-                        key={student.id} 
-                        img={student.img} 
-                        name={student.name} 
-                        github={student.github} 
-                        description={student.description}
-                    ></AboutUsCard>
-                );
-            })}
-        </section>
+            <div>
+                <section className="aboutUsPage-container">
+                    {students.map(student => {
+                        // return <Book key={book.id} book={book}></Book>;
+                        // return <Book key={book.id} {...book}></Book>; //spread operator
+                        return (
+                            <AboutUsCard className="aboutus-card" 
+                                key={student.id} 
+                                img={student.img} 
+                                name={student.name} 
+                                github={student.github} 
+                                description={student.description}
+                            ></AboutUsCard>
+                        );
+                    })}
+                </section>
+                <br/>
+                <br/>
+            </div>
         )
     }
 
