@@ -1,0 +1,21 @@
+.footer {
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+    flex-shrink: 0;
+    text-align: center;
+    background-color: #464442;
+    color: white;
+    /* margin-top: 5vh; */
+}
+
+.title {
+    font-size: 17px;
+}
+
+a:link {
+    color: white;
+}
+  
+a:visited {
+    color: white;
+}

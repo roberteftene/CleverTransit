@@ -12,6 +12,8 @@ export default class ProfilePage extends React.Component {
         return <>
             <div className="profilePage-container">
                 <ProfileInfoCard className="profile-card"></ProfileInfoCard>
+                <br/>
+                <br/>
             </div>
         </>
     }
