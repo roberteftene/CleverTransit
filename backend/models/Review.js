@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         'review_noLikes': {
-            type:DataTypes.INTEGER
+            type:DataTypes.INTEGER,
+            defaultValue: 0
         },
         'transportLineId': {
             type: DataTypes.INTEGER

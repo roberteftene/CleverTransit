@@ -10,3 +10,16 @@
     width: 40%;
     margin-bottom: 15px;
 }
+
+.likeBtn {
+    padding: 0px;
+    padding-left: 15px !important;
+}
+
+.likeBtn:hover .fas.fa-thumbs-up.like {
+    color: #fff;
+}
+
+.fas.fa-thumbs-up.like {
+    color:#ff914a;
+}
