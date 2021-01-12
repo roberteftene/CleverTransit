@@ -34,9 +34,9 @@ export default class MotMenu extends React.Component {
                                     eventKey={`link-${method.id}`}
                                     key={method.id}
                                     className="mot-item"
-                                    onClick={() => this.onMotSelected(method.id)}                                    >
+                                    onClick={() => this.onMotSelected(method.id)}>
 
-                                    <i className={`fas fa-${method.name.toString().toLowerCase()}`}></i>{method.name}
+                                     <i className={`fas fa-${method.name.toString().toLowerCase()}`}></i>{method.name}
 
                                 </Nav.Link>
                             )}

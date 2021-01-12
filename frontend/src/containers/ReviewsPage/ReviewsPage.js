@@ -11,6 +11,8 @@ export default class ReviewsPage extends React.Component {
         super(props);
         this.state = {
             methodOfTransportId: 5,
+            lineId:1,
+            isViewReviewsSelected:false,
             lines: []
         }
     }
@@ -26,7 +28,7 @@ export default class ReviewsPage extends React.Component {
     componentDidUpdate(prevProps,prevState) {
         
         if (this.state.methodOfTransportId !== prevState.methodOfTransportId) {
-
+            
             axios.get(`http://localhost:3000/transport-method/${this.state.methodOfTransportId}/lines`)
                 .then(result => {
                     const linesByMot = result.data;
@@ -35,6 +37,7 @@ export default class ReviewsPage extends React.Component {
 
         }
 
+
     }
 
 
@@ -42,17 +45,20 @@ export default class ReviewsPage extends React.Component {
         this.setState({ methodOfTransportId: methodId });
     }
 
+    handleViewReviewsSelection =(lineId) => {
+        this.setState({lineId:lineId, isViewReviewsSelected:true});
+    }
+
 
     render() {
         return <>
-
             <Row>
                 <Col className="mot-menu-col" sm={2}>
                     <MotMenu className="mot-menu" onMotSelected={this.handleMotSelection}></MotMenu>
                 </Col>
 
                 <Col sm={10}>
-                    <Linecard className="line-card" linesByMot={this.state.lines}></Linecard>
+                    <Linecard linesByMot={this.state.lines} onViewReviewsSelected={this.handleViewReviewsSelection}></Linecard>
                 </Col>
 
 

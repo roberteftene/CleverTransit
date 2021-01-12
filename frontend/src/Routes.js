@@ -3,6 +3,8 @@ import ReviewsPage from './containers/ReviewsPage/ReviewsPage';
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import HomePage from './containers/HomePage/HomePage';
 import LandingPage from './containers/LandingPage/LandingPage';
+import AboutUsPage from './containers/AboutUsPage/AboutUsPage';
+
 
 export default function Routes() {
     return (
@@ -14,6 +16,8 @@ export default function Routes() {
             <Route path="/profile" exact component={ProfilePage}></Route>
             <Route path="/home" exact component={HomePage}></Route>
             <Route path="/" exact component={LandingPage}></Route>
+            <Route path="/aboutus" exact component={AboutUsPage}></Route>
+            
         </Router>
     );
 }
