@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import FormGroup from 'react-bootstrap/esm/FormGroup'
 import axios from "axios";
+import ReviewCard from '../ReviewCard/ReviewCard'
 export default class LineCard extends React.Component {
     constructor(props) {
         super(props);
@@ -22,8 +23,14 @@ export default class LineCard extends React.Component {
                 satisfaction_level:0,
                 transportLineId:0,
                 userId:0
-            }
+            },
+            reviews:[],
+            showBtnLess:false
         }
+    }
+
+    handleViewReviewsBtn = () => {
+        this.setState({viewReviewsIsClicked: true});
     }
 
     handleClose = () => 
@@ -58,6 +65,30 @@ export default class LineCard extends React.Component {
             userId:0
         }});
     
+    }
+
+    componentDidUpdate(prevProps,prevState) {
+        if(prevState.lineOpened !== this.state.lineOpened) {
+            axios.get(`http://localhost:3000/lines/${this.state.lineOpened}/reviews`).then((res) => {
+                console.log(res.data)
+                const reviewsData = res.data;
+                this.setState({reviews:reviewsData});
+                if(reviewsData.length > 0) {
+                    this.setState({showBtnLess:true})
+                } else {
+                    this.setState({showBtnLess:false})
+                }
+            } )
+        }
+    }
+
+    onViewReviewsSelected(lineId) {
+        this.props.onViewReviewsSelected(lineId);
+        this.setState({lineOpened:lineId});
+    }
+
+    onShowLessClicked() {
+        this.setState({reviews:[],showBtnLess:false});
     }
 
     render() {
@@ -154,7 +185,16 @@ export default class LineCard extends React.Component {
                             {line.lineDescription}
                         </Card.Text>
                         <Button variant="primary" className="lineCard-btn" onClick={() => this.handleShow(line.id)}>Add review</Button>
-                        <Button variant="primary" className="lineCard-btn">View reviews</Button>
+                        <Button variant="primary" className="lineCard-btn" onClick={() => this.onViewReviewsSelected(line.id)}>View reviews</Button>
+                        {
+                            line.id === this.state.lineOpened &&
+                             (<>
+                             <ReviewCard reviews={this.state.reviews}></ReviewCard>
+                            <Button variant="primary" className={`lineCard-btn ${this.state.showBtnLess ?  'showBtn':'disableBtn'}`} onClick={() => this.onShowLessClicked()}>Show less</Button>
+                                </>)
+                        }
+
+                        
                     </Card.Body>
                 </Card>
             )}

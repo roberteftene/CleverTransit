@@ -14,7 +14,11 @@
 }
 
 .line-card{
-    margin: 10px !important;
+    margin: 50px !important;
+}
+
+.hiddedCard {
+    display: none;
 }
 
 @media only screen and (max-width: 750px) {

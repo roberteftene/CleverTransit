@@ -34,3 +34,11 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
+
+.disableBtn {
+    display: none !important;
+}
+
+.showBtn {
+    display: flex;
+}
