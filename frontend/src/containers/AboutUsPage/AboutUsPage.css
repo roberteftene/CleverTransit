@@ -16,3 +16,13 @@ html {
     width:100%;
     justify-content: space-evenly;
 }
+
+.jumbotron{
+    background: #8a8681;
+    text-align:center;
+    margin-bottom: 0 !important;
+}
+
+.our-description {
+    color: #fff !important;
+}
