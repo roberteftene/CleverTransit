@@ -1,6 +1,8 @@
 import React from "react";
 import "./MotMenu.css";
 import Nav from "react-bootstrap/Nav";
+import { Form, FormControl} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button'
 import axios from "axios";
 
 
@@ -23,12 +25,24 @@ export default class MotMenu extends React.Component {
         this.props.onMotSelected(methodId);
     }
 
+    onChangeSearch(content) {
+        this.props.searchContent(content);
+    }
+
     render() {
         return (
             <>
                 <div className="container" >
                     <Nav defaultActiveKey="/home" className="flex-column mot-menu">
                         <Nav.Item>
+                    <Form >
+                        <FormControl
+                            type="text"
+                            placeholder="Search reviews"
+                            className="mr-sm-2"
+                            onChange={(e) => this.onChangeSearch(e.target.value)}
+                        />
+                    </Form>
                             {this.state.methodsOfTransport.map(method =>
                                 <Nav.Link
                                     eventKey={`link-${method.id}`}
