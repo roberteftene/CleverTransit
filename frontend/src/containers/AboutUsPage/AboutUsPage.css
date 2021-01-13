@@ -18,7 +18,7 @@ html {
 }
 
 .jumbotron{
-    background: #8a8681;
+    background: #8a8681 !important;
     text-align:center;
     margin-bottom: 0 !important;
 }
