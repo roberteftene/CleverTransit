@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
         'transportLineId': {
             type: DataTypes.INTEGER
         },
+        'transportMethodId': {
+            type:DataTypes.INTEGER,
+            defaultValue:5
+        },
         'userId': {
             type:DataTypes.INTEGER
         }

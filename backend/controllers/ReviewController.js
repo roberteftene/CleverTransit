@@ -45,6 +45,7 @@ const addReview = async (req, res) => {
             satisfaction_level: req.body.satisfaction_level,
             review_noLikes: req.body.review_noLikes,
             transportLineId: req.body.transportLineId,
+            transportMethodId: req.body.transportMethodId,
             userId: req.body.userId
         })
         res.status(200).send(review)
@@ -68,6 +69,7 @@ const editReview = async (req, res) => {
                 satisfaction_level: req.body.satisfaction_level,
                 review_noLikes: req.body.review_noLikes,
                 transportLineId: req.body.transportLineId,
+                transportMethodId:req.body.transportMethodId,
                 userId: req.body.userId
             })
 
