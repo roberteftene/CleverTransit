@@ -26,8 +26,8 @@ export default class LandingPage extends React.Component {
                         Find out what people said. <br />
                         Share your experience.
                     </h1>
-                    <a className="btn btn-full" href="#">
-                        Log In
+                    <a className="btn btn-full" href="/login">
+                        Log In / Register
                     </a>
                     <a className="btn btn-ghost" href="/home">
                         Guest
