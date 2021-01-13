@@ -19,11 +19,13 @@ export default class ReviewsPage extends React.Component {
             isPopular:false,
             searchContent:"",
             filteredReviewsArray:[],
-            mot:'subway'
+            MOTs: [],
+            validElemForSearchByMOT:{}
         }
     }
 
     componentDidMount() {
+        axios.get('http://localhost:3000/methods').then(res => { const methods = res.data; this.setState({MOTs:methods})});
         axios.get(`http://localhost:3000/transport-method/${this.state.methodOfTransportId}/lines`)
                 .then(result => {
                     const linesByMot = result.data;
@@ -56,7 +58,7 @@ export default class ReviewsPage extends React.Component {
 
         if(this.state.searchContent !== prevState.searchContent) {
             
-             this.setState({lines:[]})
+            this.setState({lines:[]})
             axios.get(`http://localhost:3000/reviews`)
                 .then(result => {
                     let linesForFilter = result.data;
@@ -66,11 +68,15 @@ export default class ReviewsPage extends React.Component {
                         } else if(val.start_point.toLowerCase().includes(this.state.searchContent.toLowerCase()) ||
                         val.end_point.toLowerCase().includes(this.state.searchContent.toLowerCase()) ) {
                             return val;
-                        } else if(this.state.mot.toLowerCase().includes(this.state.searchContent.toLocaleLowerCase())) {
-                           //TODO check if val.mot_id is equal with the id of the mot state
-                           //Add mot menu id to review model
-                            if(val)
-                            return val;
+                        } else if(this.state.MOTs.filter((valMot) => {
+                            if(valMot.name.toLowerCase().includes(this.state.searchContent.toLowerCase())){
+                                this.setState({validElemForSearchByMOT:valMot});
+                                return true;
+                            }
+                        })) {
+                            if(this.state.validElemForSearchByMOT.id === val.transportMethodId) {
+                                return val;
+                            }
                         }
                     })
                    this.setState({filteredReviewsArray:filteredReviews});
@@ -79,7 +85,6 @@ export default class ReviewsPage extends React.Component {
         }
 
     }
-
 
     handleMotSelection = (methodId) => {
         this.setState({ methodOfTransportId: methodId });
@@ -105,7 +110,7 @@ export default class ReviewsPage extends React.Component {
                     {
                         this.state.isPopular === false && (
                             <>
-                                <Linecard linesByMot={this.state.lines} onViewReviewsSelected={this.handleViewReviewsSelection}></Linecard>
+                                <Linecard motSelected={this.state.methodOfTransportId} linesByMot={this.state.lines} onViewReviewsSelected={this.handleViewReviewsSelection}></Linecard>
                             </>
                         )
                     }

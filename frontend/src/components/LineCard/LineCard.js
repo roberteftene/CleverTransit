@@ -52,6 +52,7 @@ export default class LineCard extends React.Component {
             "satisfaction_level":this.state.formData.satisfaction_level,
             "review_noLikes":this.state.formData.review_noLikes,
             "transportLineId":this.state.lineOpened,
+            "transportMethodId":this.props.motSelected,
             "userId":1
         }, {headers:{"Content-Type" : "application/json"}})
         .then((res)=> {console.log(res)})
