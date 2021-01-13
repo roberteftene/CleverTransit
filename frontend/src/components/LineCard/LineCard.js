@@ -19,9 +19,9 @@ export default class LineCard extends React.Component {
                 end_point:"",
                 leaving_hour:"",
                 duration:"",
-                congestion_level:0,
+                congestion_level:1,
                 observations:"",
-                satisfaction_level:0,
+                satisfaction_level:1,
                 review_noLikes: 0,
                 transportLineId:0,
                 userId:0
@@ -41,6 +41,7 @@ export default class LineCard extends React.Component {
     handleShow = (lineId) => this.setState({showModal:true,lineOpened:lineId});
 
     handleAddReview = () => {
+     
         axios.post("http://localhost:3000/reviews",{
             "review_title":this.state.formData.review_title,
             "start_point":this.state.formData.start_point,
@@ -58,7 +59,7 @@ export default class LineCard extends React.Component {
         .then((res)=> {console.log(res)})
             .catch((err) => {console.log(err)})
 
-        this.setState({showModal:false, formData: {
+        this.setState({showModal:false,reviews:[],lineOpened:0,showBtnLess:false, formData: {
             review_title:"",
             start_point:"",
             end_point:"",
@@ -155,7 +156,7 @@ export default class LineCard extends React.Component {
                     <FormGroup controlId="satisfactionLevel">
                     <Form.Label>Satisfaction Level</Form.Label>
                         <Form.Text>1 - Very low | 2 - Low  | 3 - Moderate | 4 - Good | 5 - Very good</Form.Text>
-                        <Form.Control onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,satisfaction_level: e.target.value}}))}  as="select">
+                        <Form.Control  onChange={(e) => this.setState(prevState => ({formData: {...prevState.formData,satisfaction_level: e.target.value}}))}  as="select">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
