@@ -16,7 +16,10 @@ export default class ReviewsPage extends React.Component {
             isViewReviewsSelected:false,
             lines: [],
             popularReviewsArray:[],
-            isPopular:false
+            isPopular:false,
+            searchContent:"",
+            filteredReviewsArray:[],
+            mot:'subway'
         }
     }
 
@@ -31,7 +34,7 @@ export default class ReviewsPage extends React.Component {
     componentDidUpdate(prevProps,prevState) {
         
         if (this.state.methodOfTransportId !== prevState.methodOfTransportId) {
-            
+            this.setState({filteredReviewsArray:[]})
             if(this.state.methodOfTransportId === 9) {
                 this.setState({isPopular:true});
                 axios.get('http://localhost:3000/popular-reviews')
@@ -51,6 +54,30 @@ export default class ReviewsPage extends React.Component {
 
         }
 
+        if(this.state.searchContent !== prevState.searchContent) {
+            
+             this.setState({lines:[]})
+            axios.get(`http://localhost:3000/reviews`)
+                .then(result => {
+                    let linesForFilter = result.data;
+                    let filteredReviews = linesForFilter.filter((val) => {
+                        if(this.state.searchContent === "") {
+                            return val;
+                        } else if(val.start_point.toLowerCase().includes(this.state.searchContent.toLowerCase()) ||
+                        val.end_point.toLowerCase().includes(this.state.searchContent.toLowerCase()) ) {
+                            return val;
+                        } else if(this.state.mot.toLowerCase().includes(this.state.searchContent.toLocaleLowerCase())) {
+                           //TODO check if val.mot_id is equal with the id of the mot state
+                           //Add mot menu id to review model
+                            if(val)
+                            return val;
+                        }
+                    })
+                   this.setState({filteredReviewsArray:filteredReviews});
+
+                })
+        }
+
     }
 
 
@@ -62,15 +89,19 @@ export default class ReviewsPage extends React.Component {
         this.setState({lineId:lineId, isViewReviewsSelected:true});
     }
 
+    handleOnChangeSearch = (content) => {
+        this.setState({searchContent:content})
+    }
+
 
     render() {
         return <>
             <Row>
-                <Col className="mot-menu-col" sm={2}>
-                    <MotMenu className="mot-menu" onMotSelected={this.handleMotSelection}></MotMenu>
+                <Col className="mot-menu-col" sm={3}>
+                    <MotMenu className="mot-menu" searchContent={this.handleOnChangeSearch} onMotSelected={this.handleMotSelection}></MotMenu>
                 </Col>
 
-                <Col sm={10}>
+                <Col sm={9}>
                     {
                         this.state.isPopular === false && (
                             <>
@@ -103,6 +134,33 @@ export default class ReviewsPage extends React.Component {
                             } 
                             )}
                          </>
+                        )
+                    }
+                    {
+                        this.state.searchContent.length > 0 && (
+                            <>
+                                {this.state.filteredReviewsArray.map((review) => {
+                                let smileyFaces = [];
+                                for(let i = 0; i <review.satisfaction_level; i++) {
+                                smileyFaces.push(<i className="faces fas fa-smile"></i>);
+                                }
+                                 return (  
+                                <ReviewInfo 
+                                reviewId={review.id} 
+                                reviewTitle={review.review_title}
+                                reviewStartPoint={review.start_point}
+                                reviewEndPoint={review.end_point}
+                                reviewCongestion={review.congestion_level}
+                                reviewSmileyFaces={smileyFaces}
+                                reviewObservations={review.observations}
+                                reviewLeavingHour={review.leaving_hour}
+                                reviewDuration={review.duration}
+                                reviewLikes={review.review_noLikes}
+                                ></ReviewInfo>
+                                )
+                            } 
+                            )} 
+                            </>
                         )
                     }
                 </Col>
