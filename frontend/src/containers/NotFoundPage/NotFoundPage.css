@@ -1,0 +1,16 @@
+.vertical-align {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-message {
+    color: #fff;
+}
+
+.image-smoto {
+    height: 18vh;
+    border-radius: 35%;
+}
