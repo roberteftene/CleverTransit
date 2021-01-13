@@ -129,6 +129,17 @@ const getPopularReviewsByLikes = async (req,res) => {
     }
 }
 
+const getLatestReviews = async (req,res) => {
+    try {
+        let reviews = await Review.findAll(); 
+        reviews.sort((a,b) => (a.id < b.id) ? 1 : -1)
+        const latestReviews = reviews.slice(0,3);
+        res.status(200).send(latestReviews);
+    } catch(err) {
+        res.status(404).send(err.message());
+    }
+}
+
 
 module.exports = {
     getAllReviews,
@@ -137,5 +148,6 @@ module.exports = {
     editReview,
     getReviewById,
     getReviewsByLineId,
-    getPopularReviewsByLikes
+    getPopularReviewsByLikes,
+    getLatestReviews
 }
