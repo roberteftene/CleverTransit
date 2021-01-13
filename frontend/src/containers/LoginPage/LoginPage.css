@@ -5,6 +5,7 @@
 .section-input {
     min-height: 100vh;
     display: flex;
+    flex-flow: column;
     font-weight: 400;
     font-family: sans-serif;
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
@@ -19,7 +20,7 @@
     align-items: center;
 }
 
-form {
+.section-input form {
     border-radius: 5%;
     padding: 70px 100px;
     background-color: rgb(153, 153, 153, 0.5);
