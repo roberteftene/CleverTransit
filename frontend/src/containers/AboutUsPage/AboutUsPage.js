@@ -1,4 +1,5 @@
 import React from "react"
+import {Jumbotron, Container } from "react-bootstrap"
 import AboutUsCard from "../../components/AboutUsCard/AboutUsCard"
 import './AboutUsPage.css'
 
@@ -43,6 +44,16 @@ export default class AboutUsPage extends React.Component {
     render() {
         return (
             <div>
+                <section className="aboutUsPage-jumbotron">
+                    <Jumbotron fluid>
+                        <Container>
+                            <h1>We are SmotoCode</h1>
+                            <p className="our-description">
+                                Our Chief Executive Officer is a toy seal.
+                            </p>
+                        </Container>
+                    </Jumbotron>
+                </section>
                 <section className="aboutUsPage-container">
                     {students.map(student => {
                         // return <Book key={book.id} book={book}></Book>;
