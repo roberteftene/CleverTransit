@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import Card from 'react-bootstrap/Card'
 import './ActiveUserCard.css'
 import Row from 'react-bootstrap/Row'
