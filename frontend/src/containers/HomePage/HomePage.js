@@ -3,6 +3,7 @@ import './HomePage.css'
 import Card from 'react-bootstrap/Card'
 import axios from 'axios'
 import ReviewInfo from "../../components/ReviewCard/ReviewInfo"
+import ActiveUserCard from  "../../components/ActiveUserCard/ActiveUserCard"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -10,7 +11,8 @@ export default class HomePage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            latestReviews:[]
+            latestReviews:[],
+            activeUsers:[]
         }
     }
 
@@ -19,6 +21,11 @@ export default class HomePage extends React.Component {
         .then(res => {
             const reviews = res.data;
             this.setState({latestReviews: reviews})
+        })
+        axios.get('http://localhost:3000/active-users')
+        .then(res => {
+            const activeUsers = res.data;
+            this.setState({activeUsers:activeUsers});
         })
     }
 
@@ -59,8 +66,12 @@ export default class HomePage extends React.Component {
                 </Col>
 
                 <Col sm={8}>
-                <Card>
-                    
+                <Card className="active-users">
+                <Card.Body>
+
+                <Card.Title>Most Active Users</Card.Title>
+                    <ActiveUserCard activeUsers={this.state.activeUsers}></ActiveUserCard>
+                </Card.Body>
                 </Card>    
                 </Col>    
 
