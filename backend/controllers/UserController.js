@@ -106,11 +106,24 @@ const getReviewsByUserId = async (req, res) => {
     }
 }
 
+const getActiveUsers = async (req,res) => {
+    try {
+        const users = await User.findAll({ include: Review});
+        users.sort((a,b) => (a.reviews.length < b.reviews.length) ? 1 : -1);
+        const mostActive = users.slice(0,3);
+        res.status(200).send(mostActive);
+
+    }catch(err) {
+        res.status(400).send(err.message());
+    }
+}
+
 module.exports = {
     getAllUsers,
     addUser,
     editUser,
     deleteUser,
     getUserById,
-    getReviewsByUserId
+    getReviewsByUserId,
+    getActiveUsers
 }

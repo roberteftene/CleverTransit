@@ -28,6 +28,6 @@ router.post('/users',userController.addUser);
 router.put('/users/:id',userController.editUser);
 router.delete('/users/:id', userController.deleteUser);
 router.get('/users/:id/reviews',userController.getReviewsByUserId);
-
+router.get('/active-users',userController.getActiveUsers);
 
 module.exports = router;
