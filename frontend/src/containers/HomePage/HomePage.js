@@ -12,7 +12,8 @@ export default class HomePage extends React.Component {
         super(props)
         this.state = {
             latestReviews:[],
-            activeUsers:[]
+            activeUsers:[],
+            activeUsersProfileImages:["AvatarMale","AvatarMale2","AvatarFemale"]
         }
     }
 
@@ -27,6 +28,19 @@ export default class HomePage extends React.Component {
             const activeUsers = res.data;
             this.setState({activeUsers:activeUsers});
         })
+        
+    }
+
+    getNoLikes = (userId) => {
+        let noLikes = 0;
+        this.state.activeUsers.map((activeUser) => {
+            if(activeUser.id === userId) {
+                for (let index = 0; index < activeUser.reviews.length; index++) {
+                    noLikes += activeUser.reviews[index].review_noLikes;
+                }
+            }
+        })
+        return noLikes;
     }
 
     render() {
@@ -70,7 +84,22 @@ export default class HomePage extends React.Component {
                 <Card.Body>
 
                 <Card.Title>Most Active Users</Card.Title>
-                    <ActiveUserCard activeUsers={this.state.activeUsers}></ActiveUserCard>
+                <Row className={"d-flex justify-content-center"}>
+                {this.state.activeUsers.map((user,index) => {
+                    return(
+
+                    <ActiveUserCard 
+                    key={user.id}
+                    reviews={user.reviews}
+                    userFirstName={user.first_name}
+                    userLastName={user.last_name}
+                    noLikes={this.getNoLikes(user.id)}
+                    activeUsersProfileImages={this.state.activeUsersProfileImages[index]}
+                    ></ActiveUserCard>
+                    )
+                })
+                }
+                </Row>
                 </Card.Body>
                 </Card>    
                 </Col>    
