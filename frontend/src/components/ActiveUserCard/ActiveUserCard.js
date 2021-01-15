@@ -15,8 +15,8 @@ export default class ActiveUserCard extends React.Component {
     render() {
 
     return (
-        <Row className={"d-flex justify-content-center"}>
-        <Card  style={{ width: '19rem',border:'none', backgroundColor:'#464442' }}>
+        <Row className={"d-flex justify-content-around"}>
+        <Card  style={{ width: '19rem',border:'none', backgroundColor:'#464442', margin:'50px' }}>
             <Card.Img className="avatarImage" variant="top" src={`./userAvatars/${this.props.activeUsersProfileImages}.png`}/>
             <Card.Body className="cardUser-body">
            <Card.Title>{this.props.userFirstName}  {this.props.userLastName}</Card.Title>
