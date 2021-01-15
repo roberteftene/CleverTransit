@@ -23,7 +23,7 @@ export default class NavigationBar extends React.Component {
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link href="/reviews">
-                                Methods of Transport
+                                Reviews
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
