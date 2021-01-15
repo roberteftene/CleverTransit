@@ -14,7 +14,7 @@ export default class ProfileInfoCard extends React.Component {
             <div className="infoCard-container">
 
                 <Card>
-                    <Card.Title>Your info</Card.Title>
+                    <Card.Title>My information</Card.Title>
                     <Card.Text>Name: Robert Eftene</Card.Text>
                     <Card.Text>Mail: roberteftene25@gmail.com</Card.Text>
                     <Card.Text>Password: blabla</Card.Text>
