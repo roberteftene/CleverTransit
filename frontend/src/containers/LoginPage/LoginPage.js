@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import UserService from '../../Services/UserService';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import './LoginPage.css';
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            email: '',
+            password: '',
+        };
+        this.path = './login';
+        this.userService = new UserService();
     }
 
     componentDidMount() {
@@ -17,6 +24,21 @@ export default class Login extends Component {
         document.querySelector('.navbar').style.display = 'flex';
         document.querySelector('.footer').style.display = 'flex';
     }
+
+    handleSignIn = () => {
+        if (
+            this.userService.checkUserByCredentials(
+                this.state.email,
+                this.state.password
+            )
+        ) {
+            this.path = '/home';
+            this.userService.getUserByCredentials(
+                this.state.email,
+                this.state.password
+            );
+        }
+    };
 
     render() {
         return (
@@ -30,6 +52,11 @@ export default class Login extends Component {
                             type="email"
                             className="form-control"
                             placeholder="Enter email"
+                            onChange={e => {
+                                this.setState({
+                                    email: e.target.value.toString(),
+                                });
+                            }}
                         />
                     </div>
 
@@ -39,6 +66,11 @@ export default class Login extends Component {
                             type="password"
                             className="form-control"
                             placeholder="Enter password"
+                            onChange={e => {
+                                this.setState({
+                                    password: e.target.value.toString(),
+                                });
+                            }}
                         />
                     </div>
 
@@ -61,8 +93,9 @@ export default class Login extends Component {
                     <button
                         type="submit"
                         className="btn-signin btn-dark btn-lg btn-block"
+                        onClick={this.handleSignIn()}
                     >
-                        Sign in
+                        <Link to={this.path}>Sign In</Link>
                     </button>
                     <p className="forgot-password text-right">
                         Forgot{' '}

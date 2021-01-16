@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+import UserService from '../../Services/UserService';
+
 import './RegisterPage.css';
 
 export default class Register extends Component {
@@ -15,6 +18,7 @@ export default class Register extends Component {
             password: '',
             checkPassword: '',
         };
+        this.path = '/register';
     }
 
     componentDidMount() {
@@ -48,18 +52,15 @@ export default class Register extends Component {
             checker = false;
             message = 'Password too short';
         }
-        if (
-            this.state.password
-                .toString()
-                .equal(this.state.checkPassword.toString())
-        ) {
-            checker = false;
-            message = 'Passwords do not match';
-        }
+        // if (this.state.password.equal(this.state.checkPassword)) {
+        //     checker = false;
+        //     message = 'Passwords do not match';
+        // }
         return { check: checker, msg: message };
     };
     // router.post('/users',userController.addUser);
-    handleAddUser = () => {
+    handleAddUser = e => {
+        e.preventDefault();
         let checkObj = this.checkInputData();
         console.log(checkObj);
         if (checkObj.check) {
@@ -71,7 +72,7 @@ export default class Register extends Component {
                         last_name: this.state.lastName,
                         username: this.state.username,
                         password: this.state.password,
-                        email: this.state.emal,
+                        email: this.state.email,
                     },
                     { headers: { 'Content-Type': 'application/json' } }
                 )
@@ -82,15 +83,19 @@ export default class Register extends Component {
                         position: 'top-center',
                         heading: 'Welcome!',
                     });
-                    alert('Register successful');
+                    this.path = '/login';
+                    // UserService.getUserByCredentials(
+                    //     this.state.email,
+                    //     this.state.password
+                    // );
                 })
                 .catch(err => {
                     console.log(err);
                 });
         } else {
-            alert(checkObj.msg);
+            // alert('alert');
             cogoToast.warn(checkObj.msg, {
-                hideAfter: 10,
+                hideAfter: 4,
                 position: 'top-center',
                 heading: 'Oops :)',
             });
@@ -194,9 +199,10 @@ export default class Register extends Component {
                     <button
                         type="submit"
                         className="btn-signin btn-dark btn-lg btn-block"
-                        onClick={() => this.handleAddUser()}
+                        onClick={e => this.handleAddUser(e)}
+                        // href={`${this.state.path}`}
                     >
-                        Register now
+                        <Link to={this.path}>Join us</Link>
                     </button>
                 </form>
             </section>
