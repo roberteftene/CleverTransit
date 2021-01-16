@@ -15,11 +15,15 @@ export default class ProfilePage extends React.Component {
         }
     }
 
+    handleOptionSelection = (isRev) => {
+        this.setState({ isMyReviews: isRev })
+    }
+
     render() {
         return <>
             <Row>
                 <Col className="options-menu-col" sm={3}>
-                    <ProfileMenu className="options-menu"></ProfileMenu>
+                    <ProfileMenu className="options-menu" onOptionSelected={this.handleOptionSelection}></ProfileMenu>
                 </Col>
 
                 <Col sm={9}>
@@ -38,7 +42,10 @@ export default class ProfilePage extends React.Component {
                     {
                         this.state.isMyReviews===true && (
                             <>
-                                <p>User Reviews Here</p>
+                                <div className = "profile-container">
+                                    <br />
+                                    <p>User Reviews Here</p>
+                                </div>
                             </>
                         )
                     }

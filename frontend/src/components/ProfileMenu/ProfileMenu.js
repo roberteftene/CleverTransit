@@ -8,6 +8,7 @@ export default class ProfileMenu extends React.Component {
         super(props);
         this.state = {
             redirect: false,
+            isReviews: false,
         };
     }
 
@@ -24,6 +25,10 @@ export default class ProfileMenu extends React.Component {
         }
     }
 
+    onOptionSelected(isReviews) {
+        this.props.onOptionSelected(isReviews);
+    }
+
     render() {
         return (
             <>
@@ -31,8 +36,8 @@ export default class ProfileMenu extends React.Component {
                     <Nav defaultActiveKey="/home" className="flex-column options-menu">
                         <Nav.Item>
                             {this.renderRedirect()}
-                            <Nav.Link className="option-item">My Information</Nav.Link>                    
-                            <Nav.Link className="option-item">My Reviews</Nav.Link>                    
+                            <Nav.Link className="option-item" onClick={() => this.onOptionSelected(false)}>My Information</Nav.Link>                    
+                            <Nav.Link className="option-item" onClick={() => this.onOptionSelected(true)}>My Reviews</Nav.Link>                    
                             <Nav.Link className="option-item" onClick={this.setRedirect}>Log Out</Nav.Link> 
                         </Nav.Item>
                     </Nav>
