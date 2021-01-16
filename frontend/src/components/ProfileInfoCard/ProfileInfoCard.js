@@ -38,19 +38,19 @@ export default class ProfileInfoCard extends React.Component {
                     <Card.Body>
 
                         <Card.Title>First Name</Card.Title>
-                        <Card.Text className="card-text">Robert</Card.Text>
+                        <Card.Text className="profile-card-text">Robert</Card.Text>
                         
                         <Card.Title>Last Name</Card.Title>
-                        <Card.Text className="card-text">Eftene</Card.Text>
+                        <Card.Text className="profile-card-text">Eftene</Card.Text>
 
                         <Card.Title>Username</Card.Title>
-                        <Card.Text className="card-text">roberteftene25</Card.Text>
+                        <Card.Text className="profile-card-text">roberteftene25</Card.Text>
 
                         <Card.Title>Email</Card.Title>
-                        <Card.Text className="card-text">roberteftene25@gmail.com</Card.Text>
+                        <Card.Text className="profile-card-text">roberteftene25@gmail.com</Card.Text>
 
                         <Card.Title>Password</Card.Title>
-                        <Card.Text className="card-text">You can manage your password by pressing the "Edit profile" button.</Card.Text>
+                        <Card.Text className="profile-card-text">You can manage your password by pressing the "Edit profile" button.</Card.Text>
 
 
                         
