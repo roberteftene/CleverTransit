@@ -1,5 +1,6 @@
 {
     "db_user": "root",
     "dp_pass": "password",
-    "port": 3000
+    "port": 3000,
+    "host":"localhost"
 }
