@@ -18,12 +18,11 @@ model.sequelize
         console.log('Unable to connect to database');
     });
 
-    
 // Standard
-model.sequelize.sync();
+// model.sequelize.sync();
 
 // If we have modification for the tables
-//  model.sequelize.sync({alter: true});
+model.sequelize.sync({ alter: true });
 
 app.use(cors());
 app.use('/', routes);
