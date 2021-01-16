@@ -1,25 +1,29 @@
 import React from "react"
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import { Modal, Button, Card } from "react-bootstrap";
+import { Redirect } from 'react-router-dom';
 import './ProfileInfoCard.css'
 
 export default class ProfileInfoCard extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            isModalDeleteOpen: false,
+            redirect: false
+        }
+    }
+
+    openDeleteModal = () => this.setState({ isModalDeleteOpen: true });
+    closeDeleteModal = () => this.setState({ isModalDeleteOpen: false });
+
+    deleteLoggedInUser = () => { 
+        // delete user from database
+        window.location.href = "/"
     }
 
     render() {
         return (
             <div className="infoCard-container">
-
-                {/* <Card>
-                    <Card.Title>My information</Card.Title>
-                    <Card.Text>Name: Robert Eftene</Card.Text>
-                    <Card.Text>Mail: roberteftene25@gmail.com</Card.Text>
-                    <Card.Text>Password: blabla</Card.Text>
-                </Card> */}
 
                 <Card className="profile-card">
                     <Card.Header className="card-header">My Information</Card.Header>
@@ -38,7 +42,25 @@ export default class ProfileInfoCard extends React.Component {
                         <Card.Text className="card-text">*********</Card.Text>
 
                         <Button variant="primary" className="profile-card-btn">Edit profile</Button>
-                        <Button variant="primary" className="profile-card-btn">Delete your profile</Button>
+                        <Button variant="primary" className="profile-card-btn" onClick={this.openDeleteModal}>Delete your profile</Button>
+
+                        <Modal
+                            aria-labelledby="contained-modal-title-vcenter"
+                            dialogClassName="modal-120w"
+                            centered show={this.state.isModalDeleteOpen} onHide={this.closeDeleteModal}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Delete profile</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <h5>Are you sure that you want to delete your profile?</h5>
+                                <Button variant="primary" className="btn-delete-profile" onClick={this.deleteLoggedInUser}>Delete profile</Button>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={this.closeDeleteModal}>
+                                    Close
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
 
                     </Card.Body>
                 </Card>

@@ -226,8 +226,8 @@ export default class LineCard extends React.Component {
                         {
                             line.id === this.state.lineOpened &&
                              (<>
-                             <ReviewCard reviews={this.state.reviews}></ReviewCard>
-                            <Button variant="primary" className={`lineCard-btn ${this.state.showBtnLess ?  'showBtn':'disableBtn'}`} onClick={() => this.onShowLessClicked()}>Show less</Button>
+                                <ReviewCard reviews={this.state.reviews}></ReviewCard>
+                                <Button variant="primary" className={`lineCard-btn ${this.state.showBtnLess ?  'showBtn':'disableBtn'}`} onClick={() => this.onShowLessClicked()}>Show less</Button>
                                 </>)
                         }
 
