@@ -9,6 +9,8 @@ import axios from "axios";
 import ReviewCard from '../ReviewCard/ReviewCard'
 import cogoToast from 'cogo-toast';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+
 export default class LineCard extends React.Component {
     constructor(props) {
         super(props);
@@ -68,7 +70,7 @@ export default class LineCard extends React.Component {
 
      if(valid) {
 
-        axios.post("http://localhost:3000/reviews",{
+        axios.post(API_BASE_URL + 'reviews',{
             "review_title":this.state.formData.review_title,
             "start_point":this.state.formData.start_point,
             "end_point": this.state.formData.end_point,
@@ -106,7 +108,7 @@ export default class LineCard extends React.Component {
 
     componentDidUpdate(prevProps,prevState) {
         if(prevState.lineOpened !== this.state.lineOpened) {
-            axios.get(`http://localhost:3000/lines/${this.state.lineOpened}/reviews`).then((res) => {
+        axios.get(`${API_BASE_URL}lines/${this.state.lineOpened}/reviews`).then((res) => {
                 console.log(res.data)
                 const reviewsData = res.data;
                 this.setState({reviews:reviewsData});

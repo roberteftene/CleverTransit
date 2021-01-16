@@ -5,7 +5,7 @@ import { Form, FormControl} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button'
 import axios from "axios";
 
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 export default class MotMenu extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +14,7 @@ export default class MotMenu extends React.Component {
         };
     }
     componentDidMount() {
-        axios.get('http://localhost:3000/methods')
+        axios.get(API_BASE_URL + 'methods')
             .then(result => {
                 const methodsOfTransport = result.data;
                 this.setState({ methodsOfTransport })

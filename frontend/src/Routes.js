@@ -10,9 +10,6 @@ import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
 export default function Routes() {
     return (
         <Router>
-            {/* Here will be all the paths
-                For more details visit: https://reactrouter.com/web/guides/quick-start
-            */}
             <Switch>
             <Route path="/reviews" exact component={ReviewsPage}></Route>
             <Route path="/profile" exact component={ProfilePage}></Route>
