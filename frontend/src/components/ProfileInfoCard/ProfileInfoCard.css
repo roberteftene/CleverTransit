@@ -1,8 +1,8 @@
 .card {
     padding: 20px;
-    background-color: #ff914a;
     box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width:95%;
+    margin-top: 50px !important;
 }
 
 .card-title {
@@ -13,4 +13,32 @@
 
 .infoCard-container {
     width: 70%;   
+}
+
+.profile-card {
+    background-color: #464442 !important;
+}
+
+.card-header {
+    background-color: #ff914a !important;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.profile-card-btn {
+    margin: 10px;
+    color: #fff !important;
+    padding: 10px;
+    transition: all .2s ease-in-out !important;
+}
+
+.profile-card-btn:hover{
+    transform: scale(1.2);
+}
+
+.profile-card-text {
+    font-weight: 500;
+    color: #fff;
 }
