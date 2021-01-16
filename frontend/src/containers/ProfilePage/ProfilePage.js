@@ -17,11 +17,6 @@ export default class ProfilePage extends React.Component {
 
     render() {
         return <>
-            {/* <div className="profilePage-container">
-                <ProfileInfoCard className="profile-card"></ProfileInfoCard>
-                
-            </div> */}
-
             <Row>
                 <Col className="options-menu-col" sm={3}>
                     <ProfileMenu className="options-menu"></ProfileMenu>
