@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "cogo-toast": "^4.2.3",
     "dotenv": "^8.2.0",
     "mdbreact": "^5.0.1",
     "node-sass": "^4.14.1",
@@ -45,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0",
+    "url-loader": "^4.1.1"
   }
 }

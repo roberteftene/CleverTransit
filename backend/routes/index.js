@@ -20,6 +20,7 @@ router.delete('/reviews/:id', reviewController.deleteReview);
 router.post('/reviews',reviewController.addReview);
 router.put('/reviews/:id',reviewController.editReview);
 router.get('/popular-reviews',reviewController.getPopularReviewsByLikes);
+router.get('/latest-reviews',reviewController.getLatestReviews);
 
 router.get('/users', userController.getAllUsers);
 router.get('/users/:id',userController.getUserById);
@@ -27,6 +28,6 @@ router.post('/users',userController.addUser);
 router.put('/users/:id',userController.editUser);
 router.delete('/users/:id', userController.deleteUser);
 router.get('/users/:id/reviews',userController.getReviewsByUserId);
-
+router.get('/active-users',userController.getActiveUsers);
 
 module.exports = router;

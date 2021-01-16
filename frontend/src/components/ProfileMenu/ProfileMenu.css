@@ -1,0 +1,25 @@
+
+.fas {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.option-item {
+    color: rgb(70, 70, 70);
+    text-transform: uppercase;
+    font-size: 25px;
+    letter-spacing: 2px;
+    transition: all .2s ease-in-out;
+    font-weight: 500;
+    width:100% !important;
+}
+
+.option-item:hover {
+    transform: scale(1.2);
+    color:#fff!important;
+}
+
+.option-item:focus {
+    color: #fff !important;
+}
+

@@ -34,6 +34,16 @@ const deleteReview = async (req, res) => {
 
 const addReview = async (req, res) => {
     try {
+        if(req.body.review_title.length < 3) {
+            return res.status(400).send({message:'Review title too short'});
+        } else
+        if(req.body.start_point.length < 1) {
+            return res.status(400).send({message: 'Start point too short'})
+        }else
+        if(req.body.end_point.length < 1) {
+            return res.status(400).send({message: 'End point too short'})
+        } else {
+
         let review = await Review.create({
             review_title: req.body.review_title,
             start_point: req.body.start_point,
@@ -48,7 +58,8 @@ const addReview = async (req, res) => {
             transportMethodId: req.body.transportMethodId,
             userId: req.body.userId
         })
-        res.status(200).send(review)
+        return res.status(200).send(review)
+    }
     } catch (err) {
         return res.status(500).send(err)
     }
@@ -129,6 +140,17 @@ const getPopularReviewsByLikes = async (req,res) => {
     }
 }
 
+const getLatestReviews = async (req,res) => {
+    try {
+        let reviews = await Review.findAll(); 
+        reviews.sort((a,b) => (a.id < b.id) ? 1 : -1)
+        const latestReviews = reviews.slice(0,3);
+        res.status(200).send(latestReviews);
+    } catch(err) {
+        res.status(404).send(err.message());
+    }
+}
+
 
 module.exports = {
     getAllReviews,
@@ -137,5 +159,6 @@ module.exports = {
     editReview,
     getReviewById,
     getReviewsByLineId,
-    getPopularReviewsByLikes
+    getPopularReviewsByLikes,
+    getLatestReviews
 }

@@ -7,6 +7,8 @@ import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/esm/FormGroup';
 import axios from 'axios';
 import ReviewCard from '../ReviewCard/ReviewCard';
+import cogoToast from 'cogo-toast';
+
 export default class LineCard extends React.Component {
     constructor(props) {
         super(props);
@@ -41,51 +43,88 @@ export default class LineCard extends React.Component {
         this.setState({ showModal: true, lineOpened: lineId });
 
     handleAddReview = () => {
-        axios
-            .post(
-                'http://localhost:3000/reviews',
-                {
-                    review_title: this.state.formData.review_title,
-                    start_point: this.state.formData.start_point,
-                    end_point: this.state.formData.end_point,
-                    leaving_hour: this.state.formData.leaving_hour,
-                    duration: this.state.formData.duration,
-                    congestion_level: this.state.formData.congestion_level,
-                    observations: this.state.formData.observations,
-                    satisfaction_level: this.state.formData.satisfaction_level,
-                    review_noLikes: this.state.formData.review_noLikes,
-                    transportLineId: this.state.lineOpened,
-                    transportMethodId: this.props.motSelected,
-                    userId: 1,
-                },
-                { headers: { 'Content-Type': 'application/json' } }
-            )
-            .then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        let valid = true;
 
-        this.setState({
-            showModal: false,
-            reviews: [],
-            lineOpened: 0,
-            showBtnLess: false,
-            formData: {
-                review_title: '',
-                start_point: '',
-                end_point: '',
-                leaving_hour: '',
-                duration: '',
-                congestion_level: 0,
-                observations: '',
-                satisfaction_level: 0,
-                review_noLikes: 0,
-                transportLineId: 0,
-                userId: 0,
-            },
-        });
+        if (this.state.formData.review_title.length < 3) {
+            cogoToast.error('A review without a title is not good!', {
+                position: 'top-right',
+                heading: 'Oh, watch out!',
+            });
+            valid = false;
+        }
+
+        if (this.state.formData.start_point.length < 1) {
+            cogoToast.error('Where did your journey start?', {
+                position: 'top-right',
+                heading: 'Oh, watch out!',
+            });
+            valid = false;
+        }
+
+        if (this.state.formData.end_point.length < 1) {
+            cogoToast.error('Where did your journey end?', {
+                position: 'top-right',
+                heading: 'Oh, watch out!',
+            });
+            valid = false;
+        }
+
+        if (this.state.formData.observations.length < 1) {
+            cogoToast.warn('Come on, tell us everything. At leas a few words', {
+                position: 'top-right',
+                heading: 'Oh, watch out!',
+            });
+            valid = false;
+        }
+
+        if (valid) {
+            axios
+                .post(
+                    'http://localhost:3000/reviews',
+                    {
+                        review_title: this.state.formData.review_title,
+                        start_point: this.state.formData.start_point,
+                        end_point: this.state.formData.end_point,
+                        leaving_hour: this.state.formData.leaving_hour,
+                        duration: this.state.formData.duration,
+                        congestion_level: this.state.formData.congestion_level,
+                        observations: this.state.formData.observations,
+                        satisfaction_level: this.state.formData
+                            .satisfaction_level,
+                        review_noLikes: this.state.formData.review_noLikes,
+                        transportLineId: this.state.lineOpened,
+                        transportMethodId: this.props.motSelected,
+                        userId: 1,
+                    },
+                    { headers: { 'Content-Type': 'application/json' } }
+                )
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            this.setState({
+                showModal: false,
+                reviews: [],
+                lineOpened: 0,
+                showBtnLess: false,
+                formData: {
+                    review_title: '',
+                    start_point: '',
+                    end_point: '',
+                    leaving_hour: '',
+                    duration: '',
+                    congestion_level: 0,
+                    observations: '',
+                    satisfaction_level: 0,
+                    review_noLikes: 0,
+                    transportLineId: 0,
+                    userId: 0,
+                },
+            });
+            cogoToast.success('Review addded');
+        }
     };
 
     componentDidUpdate(prevProps, prevState) {
