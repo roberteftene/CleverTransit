@@ -9,6 +9,8 @@ import axios from 'axios';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import cogoToast from 'cogo-toast';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+
 export default class LineCard extends React.Component {
     constructor(props) {
         super(props);

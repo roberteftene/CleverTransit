@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col'
 import axios from 'axios'
 import ReviewInfo from '../../components/ReviewCard/ReviewInfo'
 
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 export default class ReviewsPage extends React.Component {
     constructor(props) {
         super(props);
@@ -25,8 +27,8 @@ export default class ReviewsPage extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/methods').then(res => { const methods = res.data; this.setState({MOTs:methods})});
-        axios.get(`http://localhost:3000/transport-method/${this.state.methodOfTransportId}/lines`)
+        axios.get(API_BASE_URL + 'methods').then(res => { const methods = res.data; this.setState({MOTs:methods})});
+        axios.get(`${API_BASE_URL}transport-method/${this.state.methodOfTransportId}/lines`)
                 .then(result => {
                     const linesByMot = result.data;
                     this.setState({ lines: linesByMot })
@@ -39,7 +41,7 @@ export default class ReviewsPage extends React.Component {
             this.setState({filteredReviewsArray:[]})
             if(this.state.methodOfTransportId === 9) {
                 this.setState({isPopular:true});
-                axios.get('http://localhost:3000/popular-reviews')
+                axios.get(API_BASE_URL + 'popular-reviews')
                 .then(result => {
                     const popularReviews = result.data;
                     this.setState({popularReviewsArray:popularReviews});
@@ -47,7 +49,7 @@ export default class ReviewsPage extends React.Component {
             } else {
 
             this.setState({isPopular:false})
-            axios.get(`http://localhost:3000/transport-method/${this.state.methodOfTransportId}/lines`)
+            axios.get(`${API_BASE_URL}transport-method/${this.state.methodOfTransportId}/lines`)
                 .then(result => {
                     const linesByMot = result.data;
                     this.setState({ lines: linesByMot })
@@ -59,7 +61,7 @@ export default class ReviewsPage extends React.Component {
         if(this.state.searchContent !== prevState.searchContent) {
             
             this.setState({lines:[]})
-            axios.get(`http://localhost:3000/reviews`)
+            axios.get(API_BASE_URL + 'reviews')
                 .then(result => {
                     let linesForFilter = result.data;
                     let filteredReviews = linesForFilter.filter((val) => {

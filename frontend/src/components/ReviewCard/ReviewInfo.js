@@ -5,7 +5,7 @@ import './ReviewCard.css'
 import Button from 'react-bootstrap/Button'
 import axios from "axios";
 
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 export default class ReviewInfo extends React.Component {
     constructor(props){
         super(props);
@@ -17,11 +17,11 @@ export default class ReviewInfo extends React.Component {
     handleLikeClick(reviewId) {
         this.setState(prev => ({noLikes: prev.noLikes + 1}))
         let reviewById = [];
-        axios.get(`http://localhost:3000/reviews/${reviewId}`)
+        axios.get(`${API_BASE_URL}reviews/${reviewId}`)
         .then(res => {
             reviewById = res.data;
             console.log(reviewById);
-            axios.put(`http://localhost:3000/reviews/${reviewId}`, {
+            axios.put(`${API_BASE_URL}reviews/${reviewId}`, {
                 "review_title":reviewById.review_title,
                 "start_point":reviewById.start_point,
                 "end_point":reviewById.end_point,

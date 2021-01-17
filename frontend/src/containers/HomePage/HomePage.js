@@ -7,6 +7,7 @@ import ActiveUserCard from  "../../components/ActiveUserCard/ActiveUserCard"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 export default class HomePage extends React.Component {
     constructor(props){
         super(props)
@@ -18,12 +19,12 @@ export default class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/latest-reviews')
+        axios.get(API_BASE_URL + 'latest-reviews')
         .then(res => {
             const reviews = res.data;
             this.setState({latestReviews: reviews})
         })
-        axios.get('http://localhost:3000/active-users')
+        axios.get(API_BASE_URL + 'active-users')
         .then(res => {
             const activeUsers = res.data;
             this.setState({activeUsers:activeUsers});
@@ -104,7 +105,7 @@ export default class HomePage extends React.Component {
                 </Card>    
                 </Col>    
 
-            </Row>
+        </Row>
 
            
             </>

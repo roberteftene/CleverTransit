@@ -25,7 +25,7 @@ model.sequelize.sync();
 // model.sequelize.sync({ alter: true });
 
 app.use(cors());
-app.use('/', routes);
+app.use('/api', routes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
