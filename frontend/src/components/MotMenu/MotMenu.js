@@ -60,7 +60,7 @@ export default class MotMenu extends React.Component {
                                     style={
                                         method.name.toString().toLowerCase() ===
                                             'my reviews' &&
-                                        !this.userService.checkLoggedUser()
+                                        !this.userService.userIsLogged()
                                             ? { display: 'none' }
                                             : {}
                                     }

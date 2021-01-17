@@ -7,21 +7,20 @@ export default class NavigationBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isUserLogged: true
+            isUserLogged: true,
         };
         this.userService = new UserService();
     }
 
     componentDidMount() {
-        const isUser = this.userService.checkLoggedUser();
-        this.setState({isUserLogged: isUser})
+        const isUser = this.userService.userIsLogged();
+        this.setState({ isUserLogged: isUser });
     }
-    
 
     componentDidUpdate(prevProps, prevState) {
-        const isUser = this.userService.checkLoggedUser();
-        if(prevState.isUserLogged !== this.state.isUserLogged) {
-            this.setState({isUserLogged: isUser});
+        const isUser = this.userService.userIsLogged();
+        if (prevState.isUserLogged !== this.state.isUserLogged) {
+            this.setState({ isUserLogged: isUser });
         }
     }
 
@@ -41,16 +40,13 @@ export default class NavigationBar extends React.Component {
                         <Nav.Item>
                             <Nav.Link href="/reviews">Reviews</Nav.Link>
                         </Nav.Item>
-                        {
-                            this.state.isUserLogged === true && (
-                                <>
+                        {this.state.isUserLogged === true && (
+                            <>
                                 <Nav.Item>
-                                    <Nav.Link href="/profile">Profile
-                                </Nav.Link>
+                                    <Nav.Link href="/profile">Profile</Nav.Link>
                                 </Nav.Item>
-                                </>
-                            )
-                        }
+                            </>
+                        )}
 
                         <Nav.Item>
                             <Nav.Link href="/aboutus">About Us</Nav.Link>

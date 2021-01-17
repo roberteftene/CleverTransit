@@ -18,12 +18,10 @@ export default class UserService {
         }
     };
 
-    checkLoggedUser() {
+    userIsLogged() {
         let check = false;
         if (localStorage.getItem('currentUser') !== null) {
             check = true;
-        } else {
-            check = false;
         }
         return check;
     }
