@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+}
+
+.section-input {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    font-weight: 400;
+    font-family: sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url(../../Resources/Images/city.jpg);
+    height: 100vh;
+    /*vh - > view height (all window height for the background img)*/
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-input form {
+    border-radius: 5%;
+    padding: 70px 100px;
+    background-color: rgb(153, 153, 153, 0.5);
+}
+
+.outer .form-control:focus {
+    border-color: #167bff;
+    box-shadow: none;
+}
+
+.outer h3 {
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+    padding-bottom: 20px;
+}
+
+.custom-control-label {
+    font-weight: 400;
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 13px;
+    padding-top: 10px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.link-login {
+    color: #f39c12 !important;
+}
+
+.link-login:hover {
+    color: #cf6d17 !important;
+    text-decoration: none !important;
+}
+
+.btn-signin {
+    background-color: #f39c12 !important;
+    transition: all 0.2s;
+    border: #fff !important;
+}
+
+.btn-signin:hover {
+    background-color: #cf6d17 !important;
+}
+
+.register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

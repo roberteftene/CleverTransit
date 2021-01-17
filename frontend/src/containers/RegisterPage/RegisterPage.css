@@ -1,0 +1,11 @@
+.section-input .register-form {
+    padding: 5vh 30vh;
+}
+
+.register-form h3 {
+    margin-bottom: 30px;
+}
+
+.register-form .btn-signin {
+    margin-top: 50px;
+}
