@@ -1,11 +1,14 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import './LandingPage.css';
+import UserService from '../../Services/UserService'
+
 
 export default class LandingPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.userService = new UserService();
     }
 
     componentDidMount() {
@@ -16,6 +19,10 @@ export default class LandingPage extends React.Component {
     componentWillUnmount() {
         document.querySelector('.navbar').style.display = 'flex';
         document.querySelector('.footer').style.display = 'flex';
+    }
+
+    handleEnterAsGuest = () => {
+        this.userService.emptyLocalStorage();
     }
 
     render() {
@@ -29,7 +36,7 @@ export default class LandingPage extends React.Component {
                     <a className="btn btn-full" href="/login">
                         Log In / Register
                     </a>
-                    <a className="btn btn-ghost" href="/home">
+                    <a className="btn btn-ghost" href="/home" onClick={() => this.handleEnterAsGuest()}> 
                         Guest
                     </a>
                 </div>

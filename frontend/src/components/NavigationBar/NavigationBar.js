@@ -6,8 +6,23 @@ import UserService from '../../Services/UserService';
 export default class NavigationBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            isUserLogged: true
+        };
         this.userService = new UserService();
+    }
+
+    componentDidMount() {
+        const isUser = this.userService.checkLoggedUser();
+        this.setState({isUserLogged: isUser})
+    }
+    
+
+    componentDidUpdate(prevProps, prevState) {
+        const isUser = this.userService.checkLoggedUser();
+        if(prevState.isUserLogged !== this.state.isUserLogged) {
+            this.setState({isUserLogged: isUser});
+        }
     }
 
     render() {
@@ -26,18 +41,16 @@ export default class NavigationBar extends React.Component {
                         <Nav.Item>
                             <Nav.Link href="/reviews">Reviews</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link
-                                href="/profile"
-                                style={
-                                    this.userService.checkLoggedUser()
-                                        ? { display: 'none' }
-                                        : {}
-                                }
-                            >
-                                Profile
-                            </Nav.Link>
-                        </Nav.Item>
+                        {
+                            this.state.isUserLogged === true && (
+                                <>
+                                <Nav.Item>
+                                    <Nav.Link href="/profile">Profile
+                                </Nav.Link>
+                                </Nav.Item>
+                                </>
+                            )
+                        }
 
                         <Nav.Item>
                             <Nav.Link href="/aboutus">About Us</Nav.Link>
