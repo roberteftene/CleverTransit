@@ -1,18 +1,17 @@
-const Review = require('../models').Review
-const User = require('../models').User
+const Review = require('../models').Review;
+const User = require('../models').User;
 
 const getAllUsers = async (req, res) => {
     try {
-        await User.findAll()
-            .then((allUsers) => {
-                res.status(200).json(allUsers)
-            })
+        await User.findAll().then(allUsers => {
+            res.status(200).json(allUsers);
+        });
     } catch (err) {
         res.status(404).send({
-            message: 'No users found'
-        })
+            message: 'No users found',
+        });
     }
-}
+};
 
 const addUser = async (req, res) => {
     try {
@@ -22,17 +21,17 @@ const addUser = async (req, res) => {
             last_name: req.body.last_name,
             username: req.body.username,
             password: req.body.password,
-            email: req.body.email
-        })
-        res.status(200).send(user)
+            email: req.body.email,
+        });
+        res.status(200).send(user);
     } catch (err) {
-        return res.status(500).send(err)
+        return res.status(500).send(err);
     }
-}
+};
 
 const editUser = async (req, res) => {
     try {
-        let user = await User.findByPk(req.params.id)
+        let user = await User.findByPk(req.params.id);
         if (user) {
             await user.update({
                 id: req.body.id,
@@ -40,83 +39,101 @@ const editUser = async (req, res) => {
                 last_name: req.body.last_name,
                 username: req.body.username,
                 password: req.body.password,
-                email: req.body.email
-            })
+                email: req.body.email,
+            });
 
             res.status(200).send({
-                message: 'User updated'
-            })
+                message: 'User updated',
+            });
         } else {
-            res.status(404).send('User not found')
+            res.status(404).send('User not found');
         }
     } catch (err) {
-        res.status(500).send('Server error')
+        res.status(500).send('Server error');
     }
-}
+};
 
 const deleteUser = async (req, res) => {
     try {
-        const user = await User.findByPk(req.params.id)
+        const user = await User.findByPk(req.params.id);
         if (user) {
-            await user.destroy()
+            await user.destroy();
             return res.status(200).send({
-                message: 'User deleted'
-            })
+                message: 'User deleted',
+            });
         } else {
-            return res.status(404).send('resource not found')
+            return res.status(404).send('resource not found');
         }
     } catch (err) {
         res.status(500).send({
-            message: 'Server error'
-        })
+            message: 'Server error',
+        });
     }
-}
+};
 
 const getUserById = async (req, res) => {
     try {
-        let user = await User.findByPk(req.params.id)
+        let user = await User.findByPk(req.params.id);
         if (user) {
-            res.status(200).json(user)
+            res.status(200).json(user);
         } else {
-            res.status(404).send('Resource not found')
+            res.status(404).send('Resource not found');
         }
     } catch (err) {
-        res.status(500).send('Server error')
+        res.status(500).send('Server error');
     }
-}
+};
+
+const getUserByCredentials = async (req, res) => {
+    try {
+        let user = await User.findOne({
+            where: {
+                email: req.body.email,
+                password: req.body.password,
+            },
+        });
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            console.log('user not found');
+            res.status(200).json();
+        }
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+};
 
 const getReviewsByUserId = async (req, res) => {
     let uId;
     try {
         let user = await User.findOne({
             where: {
-                id: req.params.id
-            }
-        })
-        uId = user.id
+                id: req.params.id,
+            },
+        });
+        uId = user.id;
 
         let result = await Review.findAll({
             where: {
-                userId: uId
-            }
-        })
-        res.status(200).json(result)
+                userId: uId,
+            },
+        });
+        res.status(200).json(result);
     } catch (err) {
-        res.status(500).send('Server error')
+        res.status(500).send('Server error');
     }
-}
+};
 
-const getActiveUsers = async (req,res) => {
+const getActiveUsers = async (req, res) => {
     try {
-        const users = await User.findAll({ include: Review});
-        users.sort((a,b) => (a.reviews.length < b.reviews.length) ? 1 : -1);
-        const mostActive = users.slice(0,3);
+        const users = await User.findAll({ include: Review });
+        users.sort((a, b) => (a.reviews.length < b.reviews.length ? 1 : -1));
+        const mostActive = users.slice(0, 3);
         res.status(200).send(mostActive);
-
-    }catch(err) {
+    } catch (err) {
         res.status(400).send(err.message());
     }
-}
+};
 
 module.exports = {
     getAllUsers,
@@ -125,5 +142,6 @@ module.exports = {
     deleteUser,
     getUserById,
     getReviewsByUserId,
-    getActiveUsers
-}
+    getActiveUsers,
+    getUserByCredentials,
+};
