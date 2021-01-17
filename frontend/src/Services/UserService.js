@@ -6,8 +6,21 @@ export default class UserService {
         localStorage.removeItem('currentUser');
     };
 
+    getUserFromStorage = () => {
+        let user = JSON.parse(localStorage.getItem('currentUser'));
+        return user;
+    };
+
     getUserIdFromStorage = () => {
         let user = JSON.parse(localStorage.getItem('currentUser'));
         return user.id;
     };
+
+    checkLoggedUser() {
+        let check = false;
+        if (!localStorage.getItem('currentUser')) {
+            check = true;
+        }
+        return check;
+    }
 }
