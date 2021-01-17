@@ -10,17 +10,15 @@ export default class Login extends Component {
         super(props);
         this.state = {
             email: '',
-            password: '',
-            userOk: false,
+            password: ''
         };
-        this.path = './login';
         this.userService = new UserService();
     }
 
     componentDidMount() {
         document.querySelector('.navbar').style.display = 'none';
         document.querySelector('.footer').style.display = 'none';
-        console.log(this.userService.getUserIdFromStorage());
+        // console.log(this.userService.getUserIdFromStorage());
     }
 
     componentWillUnmount() {
@@ -46,8 +44,7 @@ export default class Login extends Component {
                     let user = res.data;
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     cogoToast.success('Login Successful');
-                    this.setState({ userOk: true });
-                    this.path = '/home';
+                    this.props.history.push(`/home`)
                 }
             })
             .catch(err => {
@@ -109,8 +106,7 @@ export default class Login extends Component {
                         type="submit"
                         className="btn-signin btn-dark btn-lg btn-block"
                         onClick={e => this.handleSignIn(e)}
-                    >
-                        <Link to={this.path}>Sign In</Link>
+                    > Login
                     </button>
                     <p className="forgot-password text-right">
                         Forgot{' '}
