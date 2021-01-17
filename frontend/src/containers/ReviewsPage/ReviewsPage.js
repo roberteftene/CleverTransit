@@ -6,24 +6,29 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import axios from 'axios'
 import ReviewInfo from '../../components/ReviewCard/ReviewInfo'
+import UserService from '../../Services/UserService'
 
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export default class ReviewsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            motIds:{bus:5,tram:6,subway:7,train:8,popular:9,userReviews:10},
             methodOfTransportId: 5,
             lineId:1,
             isViewReviewsSelected:false,
             lines: [],
             popularReviewsArray:[],
+            loggedUserReviewsArray:[],
             isPopular:false,
+            isMyReviews:false,
             searchContent:"",
             filteredReviewsArray:[],
             MOTs: [],
             validElemForSearchByMOT:{}
         }
+        this.userService = new UserService();
     }
 
     componentDidMount() {
@@ -39,16 +44,24 @@ export default class ReviewsPage extends React.Component {
         
         if (this.state.methodOfTransportId !== prevState.methodOfTransportId) {
             this.setState({filteredReviewsArray:[]})
-            if(this.state.methodOfTransportId === 9) {
-                this.setState({isPopular:true});
+            if(this.state.methodOfTransportId === this.state.motIds.popular) {
+                this.setState({isPopular:true,isMyReviews:false});
                 axios.get(API_BASE_URL + 'popular-reviews')
                 .then(result => {
                     const popularReviews = result.data;
                     this.setState({popularReviewsArray:popularReviews});
                 })
-            } else {
+            } else if(this.state.methodOfTransportId === this.state.motIds.userReviews) {
+                this.setState({isMyReviews:true,isPopular:false});
+                axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}/reviews`)
+                .then((res) => {
+                    const userReviews = res.data;
+                    this.setState({loggedUserReviewsArray:userReviews});
+                })
+            }
+            else {
 
-            this.setState({isPopular:false})
+            this.setState({isPopular:false,isMyReviews:false})
             axios.get(`${API_BASE_URL}transport-method/${this.state.methodOfTransportId}/lines`)
                 .then(result => {
                     const linesByMot = result.data;
@@ -110,14 +123,41 @@ export default class ReviewsPage extends React.Component {
 
                 <Col sm={9}>
                     {
-                        this.state.isPopular === false && (
+                        this.state.isPopular === false && this.state.isMyReviews === false && (
                             <>
                                 <Linecard motSelected={this.state.methodOfTransportId} linesByMot={this.state.lines} onViewReviewsSelected={this.handleViewReviewsSelection}></Linecard>
                             </>
                         )
                     }
                     {
-                        this.state.isPopular===true && (
+                        this.state.isMyReviews === true && this.state.isPopular === false && (
+                            <>
+                              {this.state.loggedUserReviewsArray.map((review) => {
+                                let smileyFaces = [];
+                                for(let i = 0; i <review.satisfaction_level; i++) {
+                                smileyFaces.push(<i className="faces fas fa-smile"></i>);
+                                }
+                                 return (  
+                                <ReviewInfo 
+                                reviewId={review.id} 
+                                reviewTitle={review.review_title}
+                                reviewStartPoint={review.start_point}
+                                reviewEndPoint={review.end_point}
+                                reviewCongestion={review.congestion_level}
+                                reviewSmileyFaces={smileyFaces}
+                                reviewObservations={review.observations}
+                                reviewLeavingHour={review.leaving_hour}
+                                reviewDuration={review.duration}
+                                reviewLikes={review.review_noLikes}
+                                ></ReviewInfo>
+                                )
+                            } 
+                            )}
+                            </>
+                        )
+                    }
+                    {
+                        this.state.isPopular===true && this.state.isMyReviews === false  && (
                             <>
                                 {this.state.popularReviewsArray.map((review) => {
                                 let smileyFaces = [];
