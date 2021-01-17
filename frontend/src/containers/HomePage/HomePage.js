@@ -6,6 +6,7 @@ import ReviewInfo from "../../components/ReviewCard/ReviewInfo"
 import ActiveUserCard from  "../../components/ActiveUserCard/ActiveUserCard"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Spinner from 'react-bootstrap/Spinner'
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 export default class HomePage extends React.Component {
@@ -14,15 +15,22 @@ export default class HomePage extends React.Component {
         this.state = {
             latestReviews:[],
             activeUsers:[],
-            activeUsersProfileImages:["AvatarMale","AvatarMale2","AvatarFemale"]
+            activeUsersProfileImages:["AvatarMale","AvatarMale2","AvatarFemale"],
+            isLoading:true,
         }
     }
 
+    componentWillUnmount() {
+        clearInterval(this.incremeter)
+    }
+
+
     componentDidMount() {
+       
         axios.get(API_BASE_URL + 'latest-reviews')
         .then(res => {
             const reviews = res.data;
-            this.setState({latestReviews: reviews})
+            this.setState({latestReviews: reviews,isLoading:false})
         })
         axios.get(API_BASE_URL + 'active-users')
         .then(res => {
@@ -49,11 +57,16 @@ export default class HomePage extends React.Component {
             <>
             <Row>
 
-                <Col sm={4}>
+                <Col sm={4} className="mx-auto">
 
                 <Card className="latest-card">
                 <Card.Body>
                 <Card.Title>Latest experiences with public transport in Bucharest</Card.Title>
+               {
+                   this.state.isLoading === true && (
+                    <Spinner className="d-flex justify-content-center" variant="primary" animation="border" role="status"></Spinner>
+                   )
+               }
                 {this.state.latestReviews.map((review) => {
                 let smileyFaces = [];
                 for(let i = 0; i <review.satisfaction_level; i++) {
@@ -86,6 +99,11 @@ export default class HomePage extends React.Component {
 
                 <Card.Title>Most Active Users</Card.Title>
                 <Row className={"d-flex justify-content-center"}>
+                {
+                   this.state.isLoading === true && (
+                    <Spinner className="d-flex justify-content-center" variant="primary" animation="border" role="status"></Spinner>
+                   )
+               }
                 {this.state.activeUsers.map((user,index) => {
                     return(
 
