@@ -83,17 +83,12 @@ export default class Register extends Component {
                         position: 'top-center',
                         heading: 'Welcome!',
                     });
-                    this.path = '/login';
-                    // UserService.getUserByCredentials(
-                    //     this.state.email,
-                    //     this.state.password
-                    // );
+                    this.props.history.push('/login')                    
                 })
                 .catch(err => {
                     console.log(err);
                 });
         } else {
-            // alert('alert');
             cogoToast.warn(checkObj.msg, {
                 hideAfter: 4,
                 position: 'top-center',
@@ -102,9 +97,6 @@ export default class Register extends Component {
         }
     };
 
-    // testHandleFunction = () => {
-    //     alert(this.state.firstName);
-    // };
 
     render() {
         return (
@@ -200,9 +192,7 @@ export default class Register extends Component {
                         type="submit"
                         className="btn-signin btn-dark btn-lg btn-block"
                         onClick={e => this.handleAddUser(e)}
-                        // href={`${this.state.path}`}
-                    >
-                        <Link to={this.path}>Join us</Link>
+                    >Login                   
                     </button>
                 </form>
             </section>
