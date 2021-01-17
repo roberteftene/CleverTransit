@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import UserService from '../../Services/UserService';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import cogoToast from 'cogo-toast';
 import './LoginPage.css';
 
 export default class Login extends Component {
@@ -10,6 +11,7 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            userOk: false,
         };
         this.path = './login';
         this.userService = new UserService();
@@ -18,6 +20,7 @@ export default class Login extends Component {
     componentDidMount() {
         document.querySelector('.navbar').style.display = 'none';
         document.querySelector('.footer').style.display = 'none';
+        console.log(this.userService.getUserIdFromStorage());
     }
 
     componentWillUnmount() {
@@ -25,19 +28,31 @@ export default class Login extends Component {
         document.querySelector('.footer').style.display = 'flex';
     }
 
-    handleSignIn = () => {
-        if (
-            this.userService.checkUserByCredentials(
-                this.state.email,
-                this.state.password
+    handleSignIn = async e => {
+        e.preventDefault();
+        axios
+            .post(
+                'http://localhost:3000/users/credentials',
+                {
+                    email: this.state.email,
+                    password: this.state.password,
+                },
+                { headers: { 'Content-Type': 'application/json' } }
             )
-        ) {
-            this.path = '/home';
-            this.userService.getUserByCredentials(
-                this.state.email,
-                this.state.password
-            );
-        }
+            .then(res => {
+                if (!res.data) {
+                    cogoToast.warn('User not found :(');
+                } else if (res.data) {
+                    let user = res.data;
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    cogoToast.success('Login Successful');
+                    this.setState({ userOk: true });
+                    this.path = '/home';
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
     };
 
     render() {
@@ -93,7 +108,7 @@ export default class Login extends Component {
                     <button
                         type="submit"
                         className="btn-signin btn-dark btn-lg btn-block"
-                        onClick={this.handleSignIn()}
+                        onClick={e => this.handleSignIn(e)}
                     >
                         <Link to={this.path}>Sign In</Link>
                     </button>
