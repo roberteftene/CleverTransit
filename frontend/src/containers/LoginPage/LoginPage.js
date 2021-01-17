@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import cogoToast from 'cogo-toast';
 import './LoginPage.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
         };
         this.userService = new UserService();
     }
@@ -31,7 +31,8 @@ export default class Login extends Component {
     handleSignIn = async e => {
         e.preventDefault();
         axios
-            .post(API_BASE_URL + 'users/credentials',
+            .post(
+                API_BASE_URL + 'users/credentials',
                 {
                     email: this.state.email,
                     password: this.state.password,
@@ -45,7 +46,9 @@ export default class Login extends Component {
                     let user = res.data;
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     cogoToast.success('Login Successful');
-                    this.props.history.push(`/home`)
+                    // this.props.history.push(`/home`);
+                    window.location.href =
+                        process.env.REACT_APP_BASE_URL + '/home';
                 }
             })
             .catch(err => {
@@ -107,7 +110,9 @@ export default class Login extends Component {
                         type="submit"
                         className="btn-signin btn-dark btn-lg btn-block"
                         onClick={e => this.handleSignIn(e)}
-                    > Login
+                    >
+                        {' '}
+                        Login
                     </button>
                     <p className="forgot-password text-right">
                         Forgot{' '}
