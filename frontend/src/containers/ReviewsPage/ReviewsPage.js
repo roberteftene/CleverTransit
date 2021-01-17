@@ -149,6 +149,7 @@ export default class ReviewsPage extends React.Component {
                                 reviewLeavingHour={review.leaving_hour}
                                 reviewDuration={review.duration}
                                 reviewLikes={review.review_noLikes}
+                                reviewUserId={review.userId}
                                 ></ReviewInfo>
                                 )
                             } 
@@ -176,6 +177,7 @@ export default class ReviewsPage extends React.Component {
                                 reviewLeavingHour={review.leaving_hour}
                                 reviewDuration={review.duration}
                                 reviewLikes={review.review_noLikes}
+                                reviewUserId={review.userId}
                                 ></ReviewInfo>
                                 )
                             } 
@@ -203,6 +205,7 @@ export default class ReviewsPage extends React.Component {
                                 reviewLeavingHour={review.leaving_hour}
                                 reviewDuration={review.duration}
                                 reviewLikes={review.review_noLikes}
+                                reviewUserId={review.userId}
                                 ></ReviewInfo>
                                 )
                             } 
