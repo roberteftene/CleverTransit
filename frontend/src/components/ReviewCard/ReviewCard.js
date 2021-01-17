@@ -30,6 +30,7 @@ export default class ReviewCard extends React.Component {
                 reviewLeavingHour={review.leaving_hour}
                 reviewDuration={review.duration}
                 reviewLikes={review.review_noLikes}
+                reviewUserId={review.userId}
                 ></ReviewInfo>
             )
         } 

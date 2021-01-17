@@ -13,7 +13,9 @@ export default class UserService {
 
     getUserIdFromStorage = () => {
         let user = JSON.parse(localStorage.getItem('currentUser'));
-        return user.id;
+        if(user) {
+            return user.id;
+        }
     };
 
     userIsLogged() {
