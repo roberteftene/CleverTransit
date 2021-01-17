@@ -7,6 +7,8 @@ import UserService from '../../Services/UserService';
 
 import './RegisterPage.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+
 export default class Register extends Component {
     constructor(props) {
         super(props);
@@ -65,8 +67,7 @@ export default class Register extends Component {
         console.log(checkObj);
         if (checkObj.check) {
             axios
-                .post(
-                    'http://localhost:3000/users',
+                .post(API_BASE_URL + 'users',
                     {
                         first_name: this.state.firstName,
                         last_name: this.state.lastName,
