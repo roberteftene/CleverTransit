@@ -7,7 +7,7 @@ import UserService from '../../Services/UserService';
 
 import './RegisterPage.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export default class Register extends Component {
     constructor(props) {
@@ -67,7 +67,8 @@ export default class Register extends Component {
         console.log(checkObj);
         if (checkObj.check) {
             axios
-                .post(API_BASE_URL + 'users',
+                .post(
+                    API_BASE_URL + 'users',
                     {
                         first_name: this.state.firstName,
                         last_name: this.state.lastName,
@@ -84,7 +85,7 @@ export default class Register extends Component {
                         position: 'top-center',
                         heading: 'Welcome!',
                     });
-                    this.props.history.push('/login')                    
+                    this.props.history.push('/login');
                 })
                 .catch(err => {
                     console.log(err);
@@ -97,7 +98,6 @@ export default class Register extends Component {
             });
         }
     };
-
 
     render() {
         return (
@@ -193,7 +193,8 @@ export default class Register extends Component {
                         type="submit"
                         className="btn-signin btn-dark btn-lg btn-block"
                         onClick={e => this.handleAddUser(e)}
-                    >Login                   
+                    >
+                        Login
                     </button>
                 </form>
             </section>
