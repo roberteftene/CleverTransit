@@ -8,6 +8,7 @@ import FormGroup from 'react-bootstrap/esm/FormGroup';
 import axios from 'axios';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import cogoToast from 'cogo-toast';
+import UserService from '../../Services/UserService';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
@@ -33,6 +34,7 @@ export default class LineCard extends React.Component {
             reviews: [],
             showBtnLess: false,
         };
+        this.userService = new UserService();
     }
 
     handleViewReviewsBtn = () => {
@@ -95,7 +97,7 @@ export default class LineCard extends React.Component {
                         review_noLikes: this.state.formData.review_noLikes,
                         transportLineId: this.state.lineOpened,
                         transportMethodId: this.props.motSelected,
-                        userId: 1,
+                        userId: this.userService.getUserIdFromStorage(),
                     },
                     { headers: { 'Content-Type': 'application/json' } }
                 )
