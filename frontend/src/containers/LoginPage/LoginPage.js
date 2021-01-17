@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import cogoToast from 'cogo-toast';
 import './LoginPage.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -29,8 +31,7 @@ export default class Login extends Component {
     handleSignIn = async e => {
         e.preventDefault();
         axios
-            .post(
-                'http://localhost:3000/users/credentials',
+            .post(API_BASE_URL + 'users/credentials',
                 {
                     email: this.state.email,
                     password: this.state.password,
