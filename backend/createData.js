@@ -162,7 +162,7 @@ const users = [
 
 //insert methods
 (async () => {
-    await model.User.bulkCreate(users);
+    await model.TransportLine.bulkCreate(lineData);
 })();
 
 // This is for inserting data

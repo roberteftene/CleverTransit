@@ -49,3 +49,14 @@
    margin: 50px !important;
    width: auto !important;
 }
+
+.container-review {
+    display:flex !important;
+    width:100% !important;
+    align-items: center !important;
+    flex-direction:column !important;
+}
+
+.container-review .card {
+     min-width:80vh;
+}

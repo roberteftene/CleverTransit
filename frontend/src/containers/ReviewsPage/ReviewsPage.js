@@ -14,10 +14,10 @@ export default class ReviewsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            motIds:{bus:5,tram:6,subway:7,train:8,popular:9,userReviews:10}, //robert
-            //motIds:{bus:1,tram:2,subway:3,train:4,popular:5,userReviews:6}, //diana
-            methodOfTransportId: 5,
-            //methodOfTransportId: 1,
+            // motIds:{bus:5,tram:6,subway:7,train:8,popular:9,userReviews:10}, //robert
+            motIds:{bus:1,tram:2,subway:3,train:4,popular:5,userReviews:6}, //diana
+            // methodOfTransportId: 5,
+            methodOfTransportId: 1,
             lineId:1,
             isViewReviewsSelected:false,
             lines: [],
@@ -139,7 +139,8 @@ export default class ReviewsPage extends React.Component {
                                 for(let i = 0; i <review.satisfaction_level; i++) {
                                 smileyFaces.push(<i className="faces fas fa-smile"></i>);
                                 }
-                                 return (  
+                                 return (
+                                     <div className="container-review">
                                 <ReviewInfo 
                                 reviewId={review.id} 
                                 reviewTitle={review.review_title}
@@ -153,6 +154,7 @@ export default class ReviewsPage extends React.Component {
                                 reviewLikes={review.review_noLikes}
                                 reviewUserId={review.userId}
                                 ></ReviewInfo>
+                                </div>
                                 )
                             } 
                             )}
@@ -168,6 +170,7 @@ export default class ReviewsPage extends React.Component {
                                 smileyFaces.push(<i className="faces fas fa-smile"></i>);
                                 }
                                  return (  
+                                <div className="container-review">
                                 <ReviewInfo 
                                 reviewId={review.id} 
                                 reviewTitle={review.review_title}
@@ -181,6 +184,7 @@ export default class ReviewsPage extends React.Component {
                                 reviewLikes={review.review_noLikes}
                                 reviewUserId={review.userId}
                                 ></ReviewInfo>
+                                </div>
                                 )
                             } 
                             )}
@@ -196,6 +200,8 @@ export default class ReviewsPage extends React.Component {
                                 smileyFaces.push(<i className="faces fas fa-smile"></i>);
                                 }
                                  return (  
+                                     <div className="container-review">
+
                                 <ReviewInfo 
                                 reviewId={review.id} 
                                 reviewTitle={review.review_title}
@@ -209,6 +215,8 @@ export default class ReviewsPage extends React.Component {
                                 reviewLikes={review.review_noLikes}
                                 reviewUserId={review.userId}
                                 ></ReviewInfo>
+                                     </div>
+
                                 )
                             } 
                             )} 

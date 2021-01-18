@@ -26,6 +26,7 @@ model.sequelize.sync();
 
 app.use(cors());
 app.use('/api', routes);
+// app.use('/api',express.static('./frontend'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

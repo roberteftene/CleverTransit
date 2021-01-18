@@ -74,6 +74,7 @@ export default class HomePage extends React.Component {
                 }
                 return(
                     <ReviewInfo
+                        className="latestReview"
                         reviewId={review.id} 
                         reviewTitle={review.review_title}
                         reviewStartPoint={review.start_point}

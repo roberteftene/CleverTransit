@@ -33,3 +33,7 @@
 .profile-card {
     margin: auto;
 }
+
+.container-review .card {
+     min-width:80vh;
+}

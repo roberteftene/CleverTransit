@@ -83,20 +83,19 @@ export default class LineCard extends React.Component {
 
         if (valid) {
             axios
-                .post(API_BASE_URL+'/reviews',
+                .post(API_BASE_URL+'reviews',
                     {
                         review_title: this.state.formData.review_title,
                         start_point: this.state.formData.start_point,
                         end_point: this.state.formData.end_point,
                         leaving_hour: this.state.formData.leaving_hour,
-                        duration: this.state.formData.duration,
-                        congestion_level: this.state.formData.congestion_level,
+                        duration: parseInt(this.state.formData.duration),
+                        congestion_level: parseInt(this.state.formData.congestion_level),
                         observations: this.state.formData.observations,
-                        satisfaction_level: this.state.formData
-                            .satisfaction_level,
-                        review_noLikes: this.state.formData.review_noLikes,
-                        transportLineId: this.state.lineOpened,
-                        transportMethodId: this.props.motSelected,
+                        satisfaction_level: parseInt(this.state.formData.satisfaction_level),
+                        review_noLikes: parseInt(this.state.formData.review_noLikes),
+                        transportLineId: parseInt(this.state.lineOpened),
+                        transportMethodId: parseInt(this.props.motSelected),
                         userId: this.userService.getUserIdFromStorage(),
                     },
                     { headers: { 'Content-Type': 'application/json' } }
@@ -107,6 +106,9 @@ export default class LineCard extends React.Component {
                 .catch(err => {
                     console.log(err);
                 });
+                console.log(this.state.formData)
+                console.log(this.state.lineOpened)
+                console.log(this.userService.getUserIdFromStorage())
             this.setState({
                 showModal: false,
                 reviews: [],

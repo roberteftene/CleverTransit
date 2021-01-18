@@ -15,6 +15,11 @@ html {
     margin-bottom: 20px;
 }
 
+.review-card.card {
+    margin:50px 0px  !important;
+   
+}
+
 .card.active-users{
     background-color: #464442;
     margin-right: 10px;
