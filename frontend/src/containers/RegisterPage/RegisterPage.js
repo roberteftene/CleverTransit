@@ -194,7 +194,7 @@ export default class Register extends Component {
                         className="btn-signin btn-dark btn-lg btn-block"
                         onClick={e => this.handleAddUser(e)}
                     >
-                        Login
+                        Register
                     </button>
                 </form>
             </section>
