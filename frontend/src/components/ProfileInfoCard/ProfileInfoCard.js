@@ -14,6 +14,7 @@ export default class ProfileInfoCard extends React.Component {
             isModalDeleteOpen: false,
             isModalEditOpen: false,
             redirect: false,
+            loggedUser: null,
             formData: {
                 first_name: '',
                 last_name: '',
@@ -89,7 +90,8 @@ export default class ProfileInfoCard extends React.Component {
             this.currentId = res.data;
             axios.get(`${API_BASE_URL}users-method/${this.currentId}`)
             .then(result => {
-                this.currentUser = result.data;
+                this.currentUser = res.data;
+                this.loggedUser.setState(res.data);
             })
         })
     }
