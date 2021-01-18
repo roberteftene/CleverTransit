@@ -46,9 +46,7 @@ export default class Login extends Component {
                     let user = res.data;
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     cogoToast.success('Login Successful');
-                    // this.props.history.push(`/home`);
-                    window.location.href =
-                        process.env.REACT_APP_BASE_URL + '/home';
+                    this.props.history.push(`/home`);
                 }
             })
             .catch(err => {
@@ -112,6 +110,7 @@ export default class Login extends Component {
                         onClick={e => this.handleSignIn(e)}
                     >
                         {' '}
+
                         Login
                     </button>
                     <p className="forgot-password text-right">

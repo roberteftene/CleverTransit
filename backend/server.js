@@ -7,6 +7,7 @@ const model = require('./models');
 const PORT = require('./config/config.json').port;
 const routes = require('./routes');
 const cors = require('cors');
+const path = require('path');
 
 model.sequelize
     .authenticate()
@@ -23,10 +24,15 @@ model.sequelize.sync();
 
 // If we have modification for the tables
 // model.sequelize.sync({ alter: true });
-
+const public = path.join(__dirname,'../frontend/build');
 app.use(cors());
 app.use('/api', routes);
-// app.use('/api',express.static('./frontend'));
+app.use('/', express.static(public));
+
+app.get("/*", (req,res) => {
+    res.sendFile(path.join(__dirname,"../frontend/build/index.html"));
+})
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
