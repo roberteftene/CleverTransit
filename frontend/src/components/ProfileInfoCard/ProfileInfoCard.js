@@ -14,7 +14,7 @@ export default class ProfileInfoCard extends React.Component {
             isModalDeleteOpen: false,
             isModalEditOpen: false,
             redirect: false,
-            loggedUser: null,
+            loggedUser: '',
             formData: {
                 first_name: '',
                 last_name: '',
@@ -87,17 +87,17 @@ export default class ProfileInfoCard extends React.Component {
     componentDidMount() {
         axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}`)
         .then((res) => {
-            this.currentId = res.data;
-            axios.get(`${API_BASE_URL}users-method/${this.currentId}`)
-            .then(result => {
-                this.currentUser = res.data;
-                this.loggedUser.setState(res.data);
-            })
+            this.currentUser = res.data;
+            this.setState({loggedUser: res.data});
         })
     }
 
     componentDidUpdate() {
-        
+        axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}`)
+        .then((res) => {
+            this.currentUser = res.data;
+            this.setState({loggedUser: res.data});
+        })
     }
 
     render() {
@@ -110,22 +110,22 @@ export default class ProfileInfoCard extends React.Component {
                     <Card.Body>
                         <Card.Title>First Name</Card.Title>
                         <Card.Text className="profile-card-text">
-                            {this.currentUser.first_name}
+                            {this.state.loggedUser.first_name}
                         </Card.Text>
 
                         <Card.Title>Last Name</Card.Title>
                         <Card.Text className="profile-card-text">
-                            {this.currentUser.last_name}
+                            {this.state.loggedUser.last_name}
                         </Card.Text>
 
                         <Card.Title>Username</Card.Title>
                         <Card.Text className="profile-card-text">
-                            {this.currentUser.username}
+                            {this.state.loggedUser.username}
                         </Card.Text>
 
                         <Card.Title>Email</Card.Title>
                         <Card.Text className="profile-card-text">
-                            {this.currentUser.email}
+                            {this.state.loggedUser.email}
                         </Card.Text>
 
                         <Card.Title>Password</Card.Title>
