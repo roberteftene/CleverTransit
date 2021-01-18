@@ -6,17 +6,30 @@ import axios from 'axios'
 import ReviewInfo from '../../components/ReviewCard/ReviewInfo'
 import ProfileMenu from '../../components/ProfileMenu/ProfileMenu'
 import './ProfilePage.css'
+import UserService from '../../Services/UserService'
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export default class ProfilePage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             isMyReviews:false,
+            loggedUserReviewsArray:[],
         }
+        this.userService = new UserService();
     }
+
 
     handleOptionSelection = (isRev) => {
         this.setState({ isMyReviews: isRev })
+    }
+
+    componentDidMount() {
+        axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}/reviews`)
+                .then((res) => {
+                    const userReviews = res.data;
+                    this.setState({loggedUserReviewsArray:userReviews});
+                })
     }
 
     render() {
@@ -42,10 +55,32 @@ export default class ProfilePage extends React.Component {
                     {
                         this.state.isMyReviews===true && (
                             <>
-                                <div className = "profile-container">
+                                {/* <div className = "profile-container">
                                     <br />
                                     <p>User Reviews Here</p>
-                                </div>
+                                </div> */}
+                                {this.state.loggedUserReviewsArray.map((review) => {
+                                let smileyFaces = [];
+                                for(let i = 0; i <review.satisfaction_level; i++) {
+                                smileyFaces.push(<i className="faces fas fa-smile"></i>);
+                                }
+                                 return (  
+                                <ReviewInfo 
+                                reviewId={review.id} 
+                                reviewTitle={review.review_title}
+                                reviewStartPoint={review.start_point}
+                                reviewEndPoint={review.end_point}
+                                reviewCongestion={review.congestion_level}
+                                reviewSmileyFaces={smileyFaces}
+                                reviewObservations={review.observations}
+                                reviewLeavingHour={review.leaving_hour}
+                                reviewDuration={review.duration}
+                                reviewLikes={review.review_noLikes}
+                                reviewUserId={review.userId}
+                                ></ReviewInfo>
+                                )
+                            } 
+                            )}
                             </>
                         )
                     }

@@ -14,7 +14,8 @@ export default class ReviewsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            motIds:{bus:5,tram:6,subway:7,train:8,popular:9,userReviews:10},
+            // motIds:{bus:5,tram:6,subway:7,train:8,popular:9,userReviews:10}, //robert
+            motIds:{bus:1,tram:2,subway:3,train:4,popular:5,userReviews:6}, //diana
             methodOfTransportId: 5,
             lineId:1,
             isViewReviewsSelected:false,
