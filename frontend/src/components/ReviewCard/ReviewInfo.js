@@ -348,7 +348,7 @@ export default class ReviewInfo extends React.Component {
           </Button>
         </Modal.Footer>
       </Modal>
-         <Card key ={this.props.reviewId}>
+         <Card key ={this.props.reviewId} className="review-card">
                 <Card.Body>
                 <Card.Title>{this.props.reviewTitle}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{this.props.reviewStartPoint} - {this.props.reviewEndPoint}</Card.Subtitle>

@@ -44,3 +44,8 @@
 .mot-menu-col.col-sm-3 {
     min-height: 100vh;
 }
+
+.review-card {
+   margin: 50px !important;
+   width: auto !important;
+}

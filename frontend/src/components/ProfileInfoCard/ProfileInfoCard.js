@@ -1,6 +1,5 @@
 import React from 'react';
-import { Modal, Button, Card } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import { Modal, Button, Card, Form, FormGroup } from 'react-bootstrap';
 import './ProfileInfoCard.css';
 import UserService from '../../Services/UserService';
 import axios from 'axios';
@@ -15,6 +14,14 @@ export default class ProfileInfoCard extends React.Component {
             isModalDeleteOpen: false,
             isModalEditOpen: false,
             redirect: false,
+            loggedUser: '',
+            formData: {
+                first_name: '',
+                last_name: '',
+                username: '',
+                email: '',
+                password: ''
+            }
         };
         this.userService = new UserService();
         this.currentUser = this.userService.getUserFromStorage();
@@ -46,10 +53,52 @@ export default class ProfileInfoCard extends React.Component {
         window.location.href = '/';
     };
 
-    openEditModal = () => this.setState({ isModalEditOpen: true });
+    openEditModal = () => {
+        axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}`)
+        .then((res) => {
+            const user = res.data;
+            console.log(user);
+            this.setState({formData: {
+                first_name: user.first_name,
+                last_name: user.last_name,
+                username: user.username,
+                email: user.email,
+                password: user.password,
+            }
+            })
+        })
+        this.setState({ isModalEditOpen: true });
+    }
     closeEditModal = () => this.setState({ isModalEditOpen: false });
 
-    saveModifications = () => {};
+    saveModifications = () => {
+        axios.put(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}`, {
+                "first_name":this.state.formData.first_name,
+                "last_name":this.state.formData.last_name,
+                "username":this.state.formData.username,
+                "email":this.state.formData.email,
+                'password':this.state.formData.password
+        }, { headers: { 'Content-Type': 'application/json' } })
+
+        window.location.reload();
+        this.setState({ isModalEditOpen: false });
+    }
+
+    componentDidMount() {
+        axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}`)
+        .then((res) => {
+            this.currentUser = res.data;
+            this.setState({loggedUser: res.data});
+        })
+    }
+
+    componentDidUpdate() {
+        axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}`)
+        .then((res) => {
+            this.currentUser = res.data;
+            this.setState({loggedUser: res.data});
+        })
+    }
 
     render() {
         return (
@@ -61,22 +110,22 @@ export default class ProfileInfoCard extends React.Component {
                     <Card.Body>
                         <Card.Title>First Name</Card.Title>
                         <Card.Text className="profile-card-text">
-                            {this.currentUser.first_name}
+                            {this.state.loggedUser.first_name}
                         </Card.Text>
 
                         <Card.Title>Last Name</Card.Title>
                         <Card.Text className="profile-card-text">
-                            {this.currentUser.last_name}
+                            {this.state.loggedUser.last_name}
                         </Card.Text>
 
                         <Card.Title>Username</Card.Title>
                         <Card.Text className="profile-card-text">
-                            {this.currentUser.username}
+                            {this.state.loggedUser.username}
                         </Card.Text>
 
                         <Card.Title>Email</Card.Title>
                         <Card.Text className="profile-card-text">
-                            {this.currentUser.email}
+                            {this.state.loggedUser.email}
                         </Card.Text>
 
                         <Card.Title>Password</Card.Title>
@@ -107,12 +156,88 @@ export default class ProfileInfoCard extends React.Component {
                                     Here you may edit your profile information.
                                 </h5>
 
-                                <p>
-                                    Edit text boxes must be added here with
-                                    prevState - logged in user information and
-                                    the button must be set to save the newly
-                                    modified info.
-                                </p>
+                                <Form>
+                                    <FormGroup controlId="profile-first-name">
+                                        <Form.Label>Your first name</Form.Label>
+                                        <Form.Control 
+                                            value={this.state.formData.first_name}
+                                            onChange={e => 
+                                                this.setState(prevState => ({
+                                                    formData: {
+                                                        ...prevState.formData,
+                                                        first_name: e.target.value,
+                                                    },
+                                                }))
+                                            }
+                                            type="text"
+                                            placeholder="Enter first name"
+                                            ></Form.Control>
+                                    </FormGroup>
+                                    <FormGroup controlId="profile-last-name">
+                                        <Form.Label>Your last name</Form.Label>
+                                        <Form.Control 
+                                            value={this.state.formData.last_name}
+                                            onChange={e => 
+                                                this.setState(prevState => ({
+                                                    formData: {
+                                                        ...prevState.formData,
+                                                        last_name: e.target.value,
+                                                    },
+                                                }))
+                                            }
+                                            type="text"
+                                            placeholder="Enter last name"
+                                            ></Form.Control>
+                                    </FormGroup>
+                                    <FormGroup controlId="profile-username">
+                                        <Form.Label>Your username</Form.Label>
+                                        <Form.Control 
+                                            value={this.state.formData.username}
+                                            onChange={e => 
+                                                this.setState(prevState => ({
+                                                    formData: {
+                                                        ...prevState.formData,
+                                                        username: e.target.value,
+                                                    },
+                                                }))
+                                            }
+                                            type="text"
+                                            placeholder="Enter username"
+                                            ></Form.Control>
+                                    </FormGroup>
+                                    <FormGroup controlId="profile-email">
+                                        <Form.Label>Your email</Form.Label>
+                                        <Form.Control 
+                                            value={this.state.formData.email}
+                                            onChange={e => 
+                                                this.setState(prevState => ({
+                                                    formData: {
+                                                        ...prevState.formData,
+                                                        email: e.target.value,
+                                                    },
+                                                }))
+                                            }
+                                            type="text"
+                                            placeholder="Enter email"
+                                            ></Form.Control>
+                                    </FormGroup>
+                                    <FormGroup controlId="profile-password">
+                                        <Form.Label>Your password</Form.Label>
+                                        <Form.Control 
+                                            value={this.state.formData.password}
+                                            onChange={e => 
+                                                this.setState(prevState => ({
+                                                    formData: {
+                                                        ...prevState.formData,
+                                                        password: e.target.value,
+                                                    },
+                                                }))
+                                            }
+                                            type="password"
+                                            placeholder="Enter password"
+                                            ></Form.Control>
+                                    </FormGroup>
+                                </Form>
 
                                 <Button
                                     variant="primary"
