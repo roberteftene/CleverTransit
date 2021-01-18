@@ -92,12 +92,14 @@ export default class ProfileInfoCard extends React.Component {
         })
     }
 
-    componentDidUpdate() {
-        axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}`)
-        .then((res) => {
-            this.currentUser = res.data;
-            this.setState({loggedUser: res.data});
-        })
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.formData !== this.state.formData) {
+            axios.get(`${API_BASE_URL}users/${this.userService.getUserIdFromStorage()}`)
+            .then((res) => {
+                this.currentUser = res.data;
+                this.setState({loggedUser: res.data});
+            })
+        }
     }
 
     render() {
