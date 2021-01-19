@@ -28,14 +28,13 @@ h1 {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-textbox {
-    position: absolute;
-    width: 1140px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding: 10px;
 }
 
 /* Buttons */
