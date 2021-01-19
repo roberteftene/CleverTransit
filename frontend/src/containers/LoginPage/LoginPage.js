@@ -20,12 +20,12 @@ export default class Login extends Component {
     componentDidMount() {
         document.querySelector('.navbar').style.display = 'none';
         document.querySelector('.footer').style.display = 'none';
-        // console.log(this.userService.getUserIdFromStorage());
     }
 
     componentWillUnmount() {
         document.querySelector('.navbar').style.display = 'flex';
         document.querySelector('.footer').style.display = 'flex';
+        window.location.reload();
     }
 
     handleSignIn = async e => {
