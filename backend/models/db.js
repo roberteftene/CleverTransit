@@ -1,13 +1,13 @@
 const { Sequelize } = require('sequelize');
-let config = require('../config/config.json');
+// let config = require('../config/config.json');
 
 const sequelize = new Sequelize(
     'CleverTransit', 
-    config.db_user , 
-    config.db_pass,
+    'root', 
+    'password',
     {
-    host: config.host,
-    dialect: 'mysql'
+        host: 'localhost',
+        dialect: 'mysql'
     }
 );
 

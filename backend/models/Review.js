@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
     return sequelize.define('review', {
         'review_title': {
             type:DataTypes.STRING,
-            allowNull:false
+            allowNull:false,
+            defaultValue: null
         },
         'start_point': {
             type: DataTypes.STRING,
@@ -48,5 +49,5 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         underscored: true,
         timestamps: false
-    })
-}
+    });
+};

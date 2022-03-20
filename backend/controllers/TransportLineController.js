@@ -9,7 +9,7 @@ const getTransportLines = async(req,res) => {
         return res.status(404).send({ message: 'No data found'});
     }
     return res.send(linesData);
-}
+};
 
 const getTransportLineByTransportMethodId = async(req,res) => {
     let transportMethodId;
@@ -23,9 +23,9 @@ const getTransportLineByTransportMethodId = async(req,res) => {
             where: { transportMethodId: transportMethodId }
         }).then(result => res.send(result));
     } catch(err) {
-        return res.status(404).send({message: err.message})
+        return res.status(404).send({message: err.message});
     }
-}
+};
 
 const addTransportLine = async(req,res) => {
     try {
@@ -37,9 +37,9 @@ const addTransportLine = async(req,res) => {
         });
         res.status(200).send(line);
     } catch(err) {
-        return res.status(500).send("Internal server error");
+        return res.status(500).send('Internal server error');
     }
-}
+};
 
 const editTransportLine = async(req,res) => {
     try {
@@ -51,20 +51,20 @@ const editTransportLine = async(req,res) => {
                 route: req.body.route,
                 lineDescription: req.body.lineDescription,
                 transportMethodId: req.body.transportMethodId
-            })
-            res.status(200).send({message: "Line updated"})
+            });
+            res.status(200).send({message: 'Line updated'});
         } else {
-            res.status(404).send({message: "Line not found"})
+            res.status(404).send({message: 'Line not found'});
         }
 
     } catch(err) {
-        res.status(500).send("Internal server error")
+        res.status(500).send('Internal server error');
     }
-}
+};
 
 module.exports = {
     getTransportLines,
     getTransportLineByTransportMethodId,
     addTransportLine,
     editTransportLine
-}
+};

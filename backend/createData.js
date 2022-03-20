@@ -118,56 +118,55 @@ const lineData = [
 ];
 
 const users = [ 
-  {
-    first_name: 'Farand',
-    last_name: 'Dodswell',
-    username: 'fdodswell0',
-    password: 'P0zL9vz',
-    email: 'fdodswell0@yellowpages.com'
-  },
-  {
-    first_name: 'Frazer',
-    last_name: 'Burmaster',
-    username: 'fburmaster1',
-    password: 'TPC5xWUFFv1',
-    email: 'fburmaster1@sfgate.com'
-  },
-  {
-    first_name: 'Bone',
-    last_name: 'Aldwich',
-    username: 'baldwich2',
-    password: 'mSkNCOjY4Ur',
-    email: 'baldwich2@linkedin.com'
-  },
-  {
-    first_name: 'Tally',
-    last_name: 'Littefair',
-    username: 'tlittefair3',
-    password: '15O5AD7b',
-    email: 'tlittefair3@reverbnation.com'
-  },
-  {
-    first_name: 'Eugen',
-    last_name: 'Obern',
-    username: 'eobern4',
-    password: 'hwR0OipUf',
-    email: 'eobern4@bloomberg.com'
-  }
+    {
+        first_name: 'Farand',
+        last_name: 'Dodswell',
+        username: 'fdodswell0',
+        password: 'P0zL9vz',
+        email: 'fdodswell0@yellowpages.com'
+    },
+    {
+        first_name: 'Frazer',
+        last_name: 'Burmaster',
+        username: 'fburmaster1',
+        password: 'TPC5xWUFFv1',
+        email: 'fburmaster1@sfgate.com'
+    },
+    {
+        first_name: 'Bone',
+        last_name: 'Aldwich',
+        username: 'baldwich2',
+        password: 'mSkNCOjY4Ur',
+        email: 'baldwich2@linkedin.com'
+    },
+    {
+        first_name: 'Tally',
+        last_name: 'Littefair',
+        username: 'tlittefair3',
+        password: '15O5AD7b',
+        email: 'tlittefair3@reverbnation.com'
+    },
+    {
+        first_name: 'Eugen',
+        last_name: 'Obern',
+        username: 'eobern4',
+        password: 'hwR0OipUf',
+        email: 'eobern4@bloomberg.com'
+    }
 ];
 
-// const reviewMock = [
-//     {start_point:'Piata Victoriei', end_point:'Aurel Vlaicu', leaving_hour:'14:30',duration:30,congestion_level:5,observations:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",satisfaction_level:3, transportLineId:3, userId:2},
-//     {start_point:'Piata Presei', end_point:'Arcul de Triumf', leaving_hour:'14:30',duration:20,congestion_level:2,observations:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",satisfaction_level:5, transportLineId:4, userId:1}
-// ];
+const reviewMock = [
+    {start_point:'Piata Victoriei', end_point:'Aurel Vlaicu', leaving_hour:'14:30',duration:30,congestion_level:5,observations:'Cam nasol.',satisfaction_level:3, transportLineId:3, userId:2, review_title: 'ok'},
+    {start_point:'Piata Presei', end_point:'Arcul de Triumf', leaving_hour:'14:30',duration:20,congestion_level:2,observations:'Se putea si mai bine.',satisfaction_level:5, transportLineId:4, userId:1, review_title:'not ok'}
+];
 
 //insert methods
-(async () => {
-    await model.User.bulkCreate(users);
-})();
-
-// This is for inserting data
 // (async () => {
-//     await model.TransportLine.bulkCreate(lineData);
+//     await model.User.bulkCreate(users);
+// })();
+
+// (async () => {
+//     await model.MethodOfTransport.bulkCreate(data);
 // })();
 
 // (async () => {

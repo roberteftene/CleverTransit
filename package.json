@@ -1,0 +1,33 @@
+{
+  "name": "clevertransit",
+  "version": "1.0.0",
+  "description": "Our app for giving feedback on public transport.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint .",
+    "lint fix": "./node_modules/.bin/eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roberteftene/CleverTransit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roberteftene/CleverTransit/issues"
+  },
+  "homepage": "https://github.com/roberteftene/CleverTransit#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^8.11.0",
+    "eslint-plugin-react": "^7.29.4"
+  },
+  "env": {
+    "SONAR_TOKEN": "ad0da70013fd04d8bd016f2a5aa3d31e995c98bd"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
